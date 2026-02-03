@@ -1,0 +1,147 @@
+/* Button 组件样式 */
+:root {
+  /* 主色调 */
+  --my-btn-primary: #165dff;
+  --my-btn-primary-hover: #4080ff;
+  /* 按下变深 */
+  --my-btn-primary-active: #0e42d2;
+
+  /* 文字颜色 */
+  --my-btn-text: #1d2129;
+
+  /* 边框颜色 */
+  --my-btn-border: #e5e6eb;
+
+  /* 尺寸（默认） */
+  --my-btn-height: 32px;
+  /* 按钮的内边距 */
+  --my-btn-padding: 4px 15px;
+  /* 按钮内字号 */
+  --my-btn-font-size: 14px;
+  /* 按钮的圆角半径 */
+  /*如果是 0px：就是直角的长方形，很锐利。
+    如果是 6px：角会稍微磨圆一点，看起来柔和、现代。
+    如果是 16px（或者高度的一半）：就会变成两头半圆的“胶囊形”按钮  */
+  --my-btn-radius: 6px;
+
+  /* 尺寸变体 */
+  --my-btn-height-mini: 24px;
+  --my-btn-padding-mini: 4px 10px;
+  --my-btn-font-size-mini: 12px;
+
+  --my-btn-height-small: 28px;
+  --my-btn-padding-small: 4px 15px;
+  --my-btn-font-size-small: 14px;
+
+  --my-btn-height-large: 36px;
+  --my-btn-padding-large: 8px 20px;
+  --my-btn-font-size-large: 16px;
+}
+
+.my-btn {
+  /* 布局属性（让按钮内容排好） */
+  /* 按钮变flex容器，宽度根据内容自适应,不占满整行 */
+  display: inline-flex;
+  /* 图标和文字垂直居中对齐 */
+  align-items: center;
+  /* 内容水平居中 */
+  justify-content: center;
+  /* 图标和文字之间的间距是8px */
+  gap: 8px;
+
+  /* 尺寸属性（大小） */
+  height: var(--my-btn-height);
+  padding: var(--my-btn-padding);
+  font-size: var(--my-btn-font-size);
+
+  /* 边框 */
+  border: 1px solid rgb(173, 172, 172);
+  /* 圆角 */
+  border-radius: var(--my-btn-radius);
+  /* 深灰色文字 */
+  color: var(--my-btn-text);
+  /* 背景透明 */
+  background-color: transparent;
+
+  /* 交互属性 */
+  /* 鼠标悬停显示手型 */
+  cursor: pointer;
+  /* 所有属性变化时0.1秒 平滑过渡 */
+  transition: all 0.1s linear;
+  /* 防止双击选中文本 */
+  user-select: none;
+
+  /* 清除默认样式 */
+  /* 去掉点击时的蓝色聚焦框（浏览器默认行为） */
+  outline: none;
+  /* padding 和 border 包含在宽度内 */
+  box-sizing: border-box;
+}
+
+.my-btn-primary {
+  background-color: var(--my-btn-primary);
+  border-color: var(--my-btn-primary);
+  color: #fff;
+}
+
+.my-btn-primary:hover {
+  background-color: var(--my-btn-primary-hover);
+  border-color: var(--my-btn-primary-hover);
+}
+
+.my-btn-primary:active {
+  background-color: var(--my-btn-primary-active);
+  border-color: var(--my-btn-primary-active);
+}
+
+.my-btn-size-mini {
+  height: var(--my-btn-height-mini);
+  padding: var(--my-btn-padding-mini);
+  font-size: var(--my-btn-font-size-mini);
+}
+
+.my-btn-size-small {
+  height: var(--my-btn-height-small);
+  padding: var(--my-btn-padding-small);
+  font-size: var(--my-btn-font-size-small);
+}
+
+.my-btn-size-large {
+  height: var(--my-btn-height-large);
+  padding: var(--my-btn-padding-large);
+  font-size: var(--my-btn-font-size-large);
+}
+
+.my-btn-loading {
+  /* 鼠标悬停显示禁止符号 */
+  cursor: not-allowed;
+  /* 透明度降低到 65% */
+  opacity: 0.65;
+}
+
+.my-btn-loading-icon {
+  /* 让span有宽高（默认span是行内元素，没有宽高） */
+  display: inline-block;
+  /* 相对于父元素字体大小，按钮字体14px，图标就是14px */
+  width: 1em;
+  height: 1em;
+  /* 边框2px，颜色继承父元素文字颜色 */
+  border: 2px solid currentColor;
+  /* 上边框透明，形成缺口 */
+  border-top-color: transparent;
+  /* 变成圆形,看得出来在转动 */
+  border-radius: 50%;
+  /* 旋转动画,0.8s转一圈, 线性速度，无限循环*/
+  animation: my-btn-spin 0.8s linear infinite;
+}
+
+@keyframes my-btn-spin {
+  /* 初始状态0度 */
+  0% {
+    transform: rotate (0deg);
+  }
+  /* 结束状态：转一圈 */
+  100% {
+    transform: rotate(360deg);
+  }
+}

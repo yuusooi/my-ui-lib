@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <title>硬件加速Demo</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f2f5;
+            font-family: sans-serif;
+        }
+
+        /* 一个普通的盒子，默认没有任何硬件加速属性 */
+        .box {
+            width: 200px;
+            height: 200px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 20px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            cursor: pointer;
+
+            /* 过渡效果 */
+            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        /* 激活状态的样式，负责位移 */
+        .box.active {
+            transform: scale(1.5) rotate(15deg);
+        }
+
+        /* 提示文字 */
+        .tip {
+            position: absolute;
+            bottom: 50px;
+            color: #666;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="box" id="js-box">点我</div>
+    <div class="tip">打开 F12 Console 查看内存回收过程</div>
+
+    <script>
+        const box = document.getElementById('js-box');
+        let isAnimating = false;
+
+        box.addEventListener('click', () => {
+            // 防止重复点击导致逻辑混乱
+            if (isAnimating) return;
+            isAnimating = true;
+
+            console.group('动画流程开始');
+
+            // 1.硬件加速
+            box.style.willChange = 'transform';
+            console.log('1. 硬件加速已开启,显存占用上升');
+
+            // 2.执行动画
+            // requestAnimationFrame 确保 will-change 在下一帧生效后再执行动画
+            // 避免刚加上加速还没生效就开始动导致的瞬间卡顿
+            requestAnimationFrame(() => {
+                // 给浏览器一点喘息时间生成合成层
+                requestAnimationFrame(() => {
+                    box.classList.toggle('active');
+                    console.log('2. 动画执行中，GPU 工作');
+                });
+            });
+        });
+
+        // 3.垃圾回收 / 资源释放
+        // 监听 transitionend 事件，是 CSS 过渡结束时触发的
+        box.addEventListener('transitionend', () => {
+            console.log('3. 动画结束');
+
+            // 移除 will-change，告诉浏览器释放GPU资源释放
+            box.style.willChange = 'auto';
+
+            isAnimating = false;
+            console.log('4. 硬件加速已关闭，显存已释放');
+            console.groupEnd();
+        });
+    </script>
+</body>
+
+</html>

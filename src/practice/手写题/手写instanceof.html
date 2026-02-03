@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function myInstanceof(left, right) {
+            const prototype = right.prototype
+            let proto = Object.getPrototypeOf(left)
+            while (true) {
+                if (proto === null) return false
+                if (proto === prototype) return true
+                // 判断 left 的原型链上，有没有出现过 right.prototype
+                proto = Object.getPrototypeOf(proto)
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Transition Test</title>
+    <style>
+        .btn {
+            background-color: #1890ff;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+
+            transform: scale(1); /* 初始大小 */
+
+            /* 声明过渡属性
+                格式：属性名 | 持续时间 | 缓动函数 | 延迟(可选)
+                all 代表所有变化的属性都过渡
+            */
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* 定义触发状态 (End State) */
+        .btn:hover {
+            background-color: #40a9ff; /* 目标颜色 */
+            transform: scale(1.05); /* 目标大小：放大 1.05 倍 */
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+    </style>
+</head>
+
+<body>
+
+    <button class="btn">Hover Me</button>
+
+</body>
+
+</html>

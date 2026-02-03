@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+            display: grid;
+            /* 列定义：左边占 2 份，右边占 1 份 */
+            grid-template-columns: 2fr 1fr; 
+            /* 行定义：两行，每行 150px 高 */
+            grid-template-rows: 150px 150px; 
+            gap: 20px; /* 像切豆腐一样，中间留出缝隙 */
+        }
+
+        /* 关键步骤：定义子元素怎么占位 */
+
+        /* 1. 左边的大图表 */
+        .chart {
+            background: #e1f5fe;
+            /* 核心知识点：纵向跨越 2 行 */
+            /* grid-row: start-line / end-line; */
+            grid-row: 1 / 3; 
+            /* 或者写成 grid-row: span 2; (跨越 2 格) */
+        }
+
+        /* 2. 右边的卡片 */
+        .card1 {
+            background: #fff9c4;
+            /* 默认它会自动填入第一行的空位 */
+        }
+
+        .card2 {
+            background: #ffe0b2;
+            /* 默认它会自动填入第二行的空位 */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="chart">大图表 (左)</div>
+        <div class="card1">数据卡片 1 (右上)</div>
+        <div class="card2">数据卡片 2 (右下)</div>
+    </div>
+</body>
+</html>

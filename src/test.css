@@ -1,0 +1,50 @@
+/* 测试页面样式 */
+body {
+  font-family:
+    -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue',
+    Arial, sans-serif;
+  background-color: #f7f8fa;
+  margin: 0;
+  padding: 20px;
+}
+
+.test-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  background: white;
+  padding: 40px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.test-section {
+  margin-bottom: 40px;
+  padding-bottom: 30px;
+  border-bottom: 1px solid #e5e6eb;
+}
+
+.test-section:last-child {
+  border-bottom: none;
+}
+
+.test-section h2 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 16px;
+  color: #1d2129;
+}
+
+.test-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.test-label {
+  font-size: 14px;
+  color: #4e5969;
+  margin-right: 8px;
+  min-width: 80px;
+}

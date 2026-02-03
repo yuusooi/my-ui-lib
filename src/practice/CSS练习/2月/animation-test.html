@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Modal Animation Test</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            background: #f5f5f5;
+        }
+
+        /* 背景遮罩 */
+        .modal-mask {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* 弹窗内容 */
+        .modal-content {
+            background: white;
+            padding: 20px 30px;
+            border-radius: 8px;
+            font-size: 18px;
+            /* 动画名 | 持续时间 | 缓动函数 | 填充模式 */
+            animation: slideUpFadeIn 0.4s ease-out forwards;
+        }
+
+        /* 动画剧本 */
+        @keyframes slideUpFadeIn {
+            /* 0% 状态：隐身，且在原位下方 20px */
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            /* 100% 状态：现身，且回到原位 */
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="modal-mask">
+        <div class="modal-content">
+            Modal Animation Test
+        </div>
+    </div>
+
+</body>
+
+</html>

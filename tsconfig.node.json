@@ -20,7 +20,11 @@
     "noUnusedParameters": true,
     "erasableSyntaxOnly": true,
     "noFallthroughCasesInSwitch": true,
-    "noUncheckedSideEffectImports": true
+    "noUncheckedSideEffectImports": true,
+
+    "jsx": "react-jsx",
+    
+    "declaration": true, // 打包需要
   },
   "include": ["vite.config.ts"]
 }

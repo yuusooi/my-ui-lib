@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+            display: flex;
+            width: 600px;
+            border: 2px solid #333;
+            margin-bottom: 20px;
+        }
+        .item {
+            color:green;
+            height: 50px;
+            padding: 10px;
+        }
+        .box1 {
+            background-color: blue;
+        }
+        .box2 {
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <h3>1. 测试 flex: 1 (flex-basis: 0%)</h3>
+    <p>不管内容多少，两个盒子严格五五开，各占 300px。</p>
+    <div class="container">
+        <div class="item box1" style="flex: 1;">少</div>
+        <div class="item box2" style="flex: 1;">多多的多多多多的多多的多</div>
+    </div>
+    
+    <h3>2. 测试 flex: auto (flex-basis: auto)</h3>
+    <p>蓝色盒子因为字多，基础尺寸大，所以最终比红色宽。</p>
+    <div class="container">
+        <div class="item box1" style="flex: auto;">少</div>
+        <div class="item box2" style="flex: auto;">多多的多多多多的多多的多</div>
+    </div>
+</body>
+</html>
+
+
+<!-- 实际应用：固定侧边栏 + 自适应内容
+
+<div class="layout">
+    <div class="sidebar">侧边栏</div>
+    <div class="main">主内容</div>
+</div>
+
+写法：
+.layout {
+display: flex;
+}
+
+.sidebar {
+width: 200px;
+flex-shrink: 0; /* 关键：不允许缩小 */
+}
+
+.main {
+flex: 1; /* 占满剩余空间 */
+}
+
+为什么要这么写？
+- 侧边栏设置 flex-shrink: 0，确保始终保持 200px
+- 主内容设置 flex: 1，自动占满剩余所有空间
+- flex-basis: 0% 确保从0开始计算，不会被内容影响 -->

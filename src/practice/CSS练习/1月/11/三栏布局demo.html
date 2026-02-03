@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+        }
+
+        .container {
+            display: flex;
+            height: 100%;;
+        }
+
+        .left, .right {
+            width: 200px;
+            background-color: gray;
+        }
+
+        .center {
+            flex: 1;
+            background-color: rgb(222, 135, 135);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="left">左栏</div>
+        <div class="center">中间</div>
+        <div class="right">右栏</div>
+    </div>
+</body>
+</html>

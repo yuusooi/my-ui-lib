@@ -1,0 +1,273 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>5种居中方式测试实验室</title>
+    <style>
+        /* --- 公共基础样式 --- */
+        body {
+            font-family: sans-serif;
+            padding: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            /* 让测试盒换行显示 */
+            gap: 20px;
+        }
+
+        /* 所有父容器的统一样式 */
+        .parent {
+            width: 200px;
+            height: 200px;
+            background-color: #e0e0e0;
+            /* 灰色背景 */
+            border: 2px solid #333;
+            border-radius: 8px;
+
+            /* 关键：给每个盒子留个标题位置 */
+            position: relative;
+            margin-top: 20px;
+        }
+
+        /* 每个测试盒上面的标题 */
+        .label {
+            position: absolute;
+            top: -25px;
+            left: 0;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        /* 所有子元素（方块）的统一样式 */
+        .child {
+            width: 50px;
+            height: 50px;
+            background-color: #ff4757;
+            /* 红色方块 */
+            color: white;
+            font-size: 12px;
+            display: flex;
+            /* 仅为了让文字居中，方便看 */
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* 下面是 5 种核心测试代码*/
+
+        /* 1. Flex 方案 */
+        .method-1 {
+            display: flex;
+            justify-content: center;
+            /* 水平居中 */
+            align-items: center;
+            /* 垂直居中 */
+        }
+
+        /* 2. Grid 方案 */
+        .method-2 {
+            display: grid;
+            place-items: center;
+            /* 一行搞定水平+垂直 */
+        }
+
+        /* 3. 绝对定位 + Transform */
+        .method-3 {
+            position: relative;
+            /* 父相 */
+        }
+
+        .method-3 .child {
+            position: absolute;
+            /* 子绝 */
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            /* 回退自身的一半 */
+        }
+
+        /* 4. 绝对定位 + Margin Auto */
+        .method-4 {
+            position: relative;
+        }
+
+        .method-4 .child {
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            /* 拉满四个角 */
+            margin: auto;
+            /* 关键：分配剩余空间 */
+        }
+
+        /* 5. Line-height (仅适用于文本/行内) */
+        .method-5 {
+            text-align: center;
+            /* 水平居中 */
+            line-height: 200px;
+            /* 垂直：行高 = 容器高度 */
+        }
+
+        /* 注意：这种方式通常不用 child div，而是直接写文字，
+           或者 child 必须是 inline-block */
+        .method-5 .child-text {
+            display: inline-block;
+            vertical-align: middle;
+            /* 配合 line-height 实现近似居中，或者直接看纯文字 */
+            line-height: normal;
+            /* 重置内部行高，防止文字飞了 */
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="parent method-1">
+        <div class="label">1. Flex</div>
+        <div class="child">Box</div>
+    </div>
+
+    <div class="parent method-2">
+        <div class="label">2. Grid</div>
+        <div class="child">Box</div>
+    </div>
+
+    <div class="parent method-3">
+        <div class="label">3. Transform</div>
+        <div class="child">Box</div>
+    </div>
+
+    <div class="parent method-4">
+        <div class="label">4. Margin Auto</div>
+        <div class="child">Box</div>
+    </div>
+
+    <div class="parent method-5">
+        <div class="label">5. Line-height</div>
+        <span class="child-text">我是文字</span>
+    </div>
+
+</body>
+
+</html> -->
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            padding: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .parent {
+            position: relative;
+            margin-top: 20px;
+            width: 200px;
+            height: 200px;
+            background-color: #e0e0e0;
+            border: 2px solid #333;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        .label {
+            position: absolute;
+            top: -25px;
+            left: 0;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .child {
+            width: 50px;
+            height: 50px;
+            background-color: #ff4757;
+            color: white;
+            font-size: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .method-1 {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .method-2 {
+            display: grid;
+            place-items: center;
+        }
+
+        .method-3 {
+            position: relative;
+        }
+        .method-3 .child {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+        }
+
+        .method-4 {
+            position: relative;
+        }
+        .method-4 .child {
+            position: absolute;
+            top:0;
+            left:0;
+            right:0;
+            bottom: 0;
+            margin: auto;
+        }
+
+        .method-5 {
+            height: 200px;
+            text-align: center;
+            line-height: 200px;
+        }
+        .method-5 .child-text {
+            display: inline-block;
+            line-height: normal;
+            vertical-align:middle;
+        }
+    </style>
+</head>
+<body>
+    <div class="parent method-1">
+        <div class="label">1. Flex</div>
+        <div class="child">Box</div>
+    </div>
+    
+    <div class="parent method-2">
+        <div class="label">2. Grid</div>
+        <div class="child">Box</div>
+    </div>
+    
+    <div class="parent method-3">
+        <div class="label">3. Transform</div>
+        <div class="child">Box</div>
+    </div>
+    
+    <div class="parent method-4">
+        <div class="label">4. Margin Auto</div>
+        <div class="child">Box</div>
+    </div>
+    
+    <div class="parent method-5">
+        <div class="label">5. Line-height</div>
+        <span class="child-text">文字</span>
+    </div>
+</body>
+</html>

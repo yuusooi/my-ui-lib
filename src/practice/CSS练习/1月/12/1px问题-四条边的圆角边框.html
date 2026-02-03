@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 四条边的圆角边框 */
+        .border-1px-box {
+        position: relative;
+        width: 100px;
+        height: 40px;
+        }
+
+        .border-1px-box::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+
+        /* 核心 1：把盒子放大 2 倍 */
+        width: 200%;
+        height: 200%;
+
+        /* 核心 2：画 1px 边框 */
+        border: 1px solid red;
+        border-radius: 16px; /* 假设原圆角是 8px，这里要写 16px */
+
+        /* 核心 3：整体缩小 0.5 倍 */
+        transform: scale(0.5);
+
+        /* 核心 4：定住左上角，不然缩小后会跑偏 */
+        transform-origin: 0 0;
+
+        /* 只是为了不挡住点击事件 */
+        pointer-events: none;
+        } 
+    </style>
+</head>
+<body>
+    <div class="border-1px-box">
+        四条边的圆角边框
+    </div>
+</body>
+</html>
