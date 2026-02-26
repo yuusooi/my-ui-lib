@@ -1,53 +1,53 @@
-// import { useState } from 'react'
-import './App.css'
-// import Test from './test.tsx'
-import Button from './components/Button/index.tsx'
+// // import { useState } from 'react'
+// import './App.css'
+// // import Test from './test.tsx'
+// import Button from './components/Button/index.tsx'
 
-function App() {
-  return (
-    <>
-      <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
-        {/* <Button size="mini" type="primary">Mini</Button>
-        <Button size="small" type="primary">Small</Button>
-        <Button size="default" type="primary">Default</Button>
-        <Button size="large" type="primary">Large</Button>     */}
-        <Button loading>提交中...</Button>
-        <Button>提交</Button>
-        <Button disabled>不可点击</Button>
-        <Button>可以点击</Button>
-        {/* 1. 字符串图标 */}
-        <Button icon="★">收藏</Button>
+// function App() {
+//   return (
+//     <>
+//       <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
+//         {/* <Button size="mini" type="primary">Mini</Button>
+//         <Button size="small" type="primary">Small</Button>
+//         <Button size="default" type="primary">Default</Button>
+//         <Button size="large" type="primary">Large</Button>     */}
+//         <Button loading>提交中...</Button>
+//         <Button>提交</Button>
+//         <Button disabled>不可点击</Button>
+//         <Button>可以点击</Button>
+//         {/* 1. 字符串图标 */}
+//         <Button icon="★">收藏</Button>
 
-        {/* 2. React 组件图标
-        import { Icon } from '@arco-design/web-react';
-        <Button icon={<IconStar />}>收藏</Button> */}
+//         {/* 2. React 组件图标
+//         import { Icon } from '@arco-design/web-react';
+//         <Button icon={<IconStar />}>收藏</Button> */}
 
-        {/* 3. emoji */}
-        <Button icon="⭐">评分</Button>
+//         {/* 3. emoji */}
+//         <Button icon="⭐">评分</Button>
 
-        {/* 4. 只有图标（没有文字） */}
-        <Button icon="★" />
+//         {/* 4. 只有图标（没有文字） */}
+//         <Button icon="★" />
 
-        {/* 5. loading 优先级更高 */}
-        <Button icon="★" loading>
-          提交中...
-        </Button>
+//         {/* 5. loading 优先级更高 */}
+//         <Button icon="★" loading>
+//           提交中...
+//         </Button>
 
-        <Button href="https://baidu.com">百度</Button>
+//         <Button href="https://baidu.com">百度</Button>
 
-        <Button as="a">测试</Button>
+//         <Button as="a">测试</Button>
 
-        <Button loading>提交订单到服务器 {/* loading 时宽度变小 */}</Button>
+//         <Button loading>提交订单到服务器 {/* loading 时宽度变小 */}</Button>
 
-        <Button loading loadingFixedWidth>
-          提交订单到服务器 {/* loading 时宽度不变 */}
-        </Button>
-      </div>
-    </>
-  )
-}
+//         <Button loading loadingFixedWidth>
+//           提交订单到服务器 {/* loading 时宽度不变 */}
+//         </Button>
+//       </div>
+//     </>
+//   )
+// }
 
-export default App
+// export default App
 
 // import './components/Grid/grid.responsive.css';
 // import Row from './components/Grid/Row';
@@ -929,3 +929,41 @@ export default App
 // }
 
 // export default TestPage
+
+import { Form } from './components/Form'
+import { FormItem } from './components/Form/FormItem'
+import { Input } from './components/Input'
+
+function App() {
+  return (
+    <div style={{ padding: '20px', maxWidth: '500px' }}>
+      <h2>Form 校验测试</h2>
+
+      <Form
+        initialValues={{ username: '', password: '' }}
+        onSubmit={(values) => {
+          console.log('提交成功，数据:', values)
+          alert('提交成功！查看控制台')
+        }}
+      >
+        <FormItem name="username" label="用户名" required>
+          <Input placeholder="请输入用户名" />
+        </FormItem>
+
+        <FormItem name="password" label="密码" required>
+          <Input type="password" placeholder="请输入密码" />
+        </FormItem>
+
+        <FormItem name="email" label="邮箱">
+          <Input type="email" placeholder="请输入邮箱（非必填）" />
+        </FormItem>
+
+        <button type="submit" style={{ marginTop: '16px' }}>
+          提交
+        </button>
+      </Form>
+    </div>
+  )
+}
+
+export default App

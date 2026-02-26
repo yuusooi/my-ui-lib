@@ -2,15 +2,15 @@ import type { ReactNode } from 'react'
 import './index.css'
 
 // 列定义接口
-export interface Column<T = any> {
+export interface Column {
   title: string //列标题
   key: string //数据字段名
-  render?: (text: unknown, record: T, index: number) => ReactNode //需要转换的数据
+  render?: (text: any, record: any, index: number) => ReactNode //需要转换的数据
 }
 
 // 定义TableProps接口
 export interface TableProps<T = any> {
-  columns: Column<T>[] //列定义数组，定义列的配置，顺序是列的显示顺序
+  columns: Column[] //列定义数组，定义列的配置，顺序是列的显示顺序
   dataSource: T[] //数据源数组，每行是一个数据对象，顺序是行的显示顺序
   rowKey?: string //行的标识字段名,每个元素都有唯一key,rowKey给table具体字段
   bordered?: boolean //表格表框
@@ -29,7 +29,7 @@ export interface TableProps<T = any> {
   }
 }
 
-function Table<T = any>(props: TableProps) {
+function Table(props: TableProps) {
   // 解构props提取需要的数据
   const {
     columns,

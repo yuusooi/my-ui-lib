@@ -1,11 +1,13 @@
+/* Input 组件样式 - 双主题 Design Tokens */
+
 /* 最外层容器 */
 .my-input-wrapper {
   display: flex; /* flex布局 子元素横向排列*/
   align-items: center; /* 垂直居中*/
 
-  /* 边框和圆角 */
-  border: 1px solid white;
-  border-radius: 4px;
+  /* 边框和圆角 - 基础组件使用 component-border */
+  border: 1px solid var(--component-border);
+  border-radius: var(--border-radius-md);
 
   /* 内边距 */
   padding: 0 12px;
@@ -16,12 +18,12 @@
   /* 过渡动画（聚集时边框颜色变化） */
   transition: all 0.2s;
 
-  box-shadow: 0 0 0 1px #ccc inset;
+  box-shadow: 0 0 0 1px var(--component-border) inset;
 }
 
 /* 相邻 wrapper 左边不画边框 */
 .my-input-wrapper + .my-input-wrapper {
-  box-shadow: 0 0 0 1px #ccc inset;
+  box-shadow: 0 0 0 1px var(--component-border) inset;
   margin-left: -1px;
 }
 
@@ -29,8 +31,8 @@
 /* 虽然用户聚焦的是input，但边框变色的是wrapper */
 /* 实现 聚焦时外层容器变色 的效果 */
 .my-input-wrapper:focus-within {
-  border-color: rgb(0, 140, 255);
-  box-shadow: 0 0 0 2px rgba(24, 143, 255, 0.1);
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px rgba(15, 15, 15, 0.1);
 }
 
 /* 实际input元素 */
@@ -44,8 +46,8 @@
   background: transparent;
 
   /* 字体 */
-  font-size: 14px;
-  color: black;
+  font-size: var(--font-size-base);
+  color: var(--component-text);
 
   /* 去掉由wrapper控制的默认padding */
   padding: 0;
@@ -53,7 +55,7 @@
 }
 
 .my-input::placeholder {
-  color: #bfbfbf;
+  color: var(--text-color-secondary);
 }
 
 /* 前缀和后缀图标 */
@@ -63,14 +65,14 @@
   flex-shrink: 0;
 
   /* 图标和input之间的间距 */
-  margin: 0 8px;
+  margin: 0 var(--spacing-sm);
 
   /* 图标垂直居中 */
   display: flex;
   align-items: center;
 
-  /* 图标颜色 */
-  color: #bfbfbf;
+  /* 图标颜色 - 使用次要文本颜色 */
+  color: var(--text-color-secondary);
 }
 
 /* 第一个子元素不需要左边距 */
@@ -85,22 +87,21 @@
 
 /* 状态样式 */
 .my-input-error {
-  border-color: #ff4d4f !important;
-  /* box-shadow: 0 0 0 1px rgba(255, 77, 79, 0.2); */
+  border-color: var(--error-color) !important;
 }
 
 .my-input-disabled {
-  background-color: white;
+  background-color: var(--component-hover-bg);
   cursor: not-allowed;
 }
 
 .my-input-wrapper-error {
-  border-color: #ff4d4f !important;
+  border-color: var(--error-color) !important;
 }
 
 .my-input-wrapper-error:focus-within {
-  border-color: #ff4d4f !important;
-  box-shadow: 0 0 0 2px rgba(255, 77, 79, 0.2) !important;
+  border-color: var(--error-color) !important;
+  box-shadow: 0 0 0 2px rgba(224, 62, 62, 0.2) !important;
 }
 
 /* 尺寸变体 */
@@ -120,36 +121,36 @@
 }
 
 .my-input-clear-icon {
-  font-size: 14px;
-  color: #bfbfbf;
+  font-size: var(--font-size-base);
+  color: var(--text-color-secondary);
   transition: color 0.2s;
   padding: 0 4px;
 }
 
 .my-input-clear-icon:hover {
-  color: #999;
+  color: var(--component-text);
 }
 
 .my-input-password-toggle {
   font-size: 16px;
-  color: #bfbfbf;
+  color: var(--text-color-secondary);
   transition: color 0.2s;
   padding: 0 4px;
 }
 
 .my-input-password-toggle:hover {
-  color: #999;
+  color: var(--component-text);
 }
 
 .my-input-count {
   font-size: 12px;
-  color: #bfbfbf;
-  margin-left: 8px;
+  color: var(--text-color-secondary);
+  margin-left: var(--spacing-sm);
   white-space: nowrap;
 }
 
 .my-input-count.my-input-count-exceeded {
-  color: #ff4d4f;
+  color: var(--error-color);
 }
 
 /* textArea容器 */
@@ -164,39 +165,40 @@
   width: 100%;
   min-height: 32px;
   padding: 4px 12px;
-  border: 1px solid #e5e5e5;
-  border-radius: 4px;
-  font-size: 14px;
-  color: #333;
+  border: 1px solid var(--component-border);
+  border-radius: var(--border-radius-md);
+  font-size: var(--font-size-base);
+  color: var(--component-text);
   outline: none;
   transition: all 0.2s;
   font-family: inherit;
   line-height: 1.5;
   box-sizing: border-box;
+  background-color: var(--component-bg);
 }
 
 .my-textarea:hover {
-  border-color: #1890ff;
+  border-color: var(--primary-color);
 }
 
 .my-textarea:focus {
-  border-color: #1890ff;
-  box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.1);
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px rgba(15, 15, 15, 0.1);
 }
 
 /* TextArea 状态 */
 .my-textarea-error {
-  border-color: #ff4d4f;
+  border-color: var(--error-color);
 }
 
 .my-textarea-error:focus {
-  box-shadow: 0 0 0 2px rgba(255, 77, 79, 0.1);
+  box-shadow: 0 0 0 2px rgba(224, 62, 62, 0.1);
 }
 
 .my-textarea-disabled {
-  background-color: #f5f5f5;
+  background-color: var(--component-hover-bg);
   cursor: not-allowed;
-  color: #999;
+  color: var(--text-color-secondary);
 }
 
 /* TextArea 尺寸 */
@@ -225,27 +227,27 @@
   /* 内容靠右 */
   justify-content: flex-end;
   padding: 4px 12px;
-  border: 1px solid #e5e5e5;
+  border: 1px solid var(--component-border);
   border-top: none;
-  border-radius: 0 0 4px 4px;
-  background-color: #fafafa;
+  border-radius: 0 0 var(--border-radius-md) var(--border-radius-md);
+  background-color: var(--component-hover-bg);
 }
 
 .my-textarea-clear-icon {
-  font-size: 14px;
-  color: #bfbfbf;
+  font-size: var(--font-size-base);
+  color: var(--text-color-secondary);
   cursor: pointer;
   padding: 0 4px;
-  margin-right: 8px;
+  margin-right: var(--spacing-sm);
 }
 
 .my-textarea-clear-icon:hover {
-  color: #999;
+  color: var(--component-text);
 }
 
 .my-textarea-count {
   font-size: 12px;
-  color: #bfbfbf;
+  color: var(--text-color-secondary);
 }
 
 /* Input.Group */
@@ -261,12 +263,12 @@
 
 /* 第一个元素：左侧圆角 */
 .my-input-group .my-input-wrapper:first-child {
-  border-radius: 4px 0 0 4px;
+  border-radius: var(--border-radius-md) 0 0 var(--border-radius-md);
 }
 
 /* 最后一个元素：右侧圆角 */
 .my-input-group .my-input-wrapper:last-child {
-  border-radius: 0 4px 4px 0;
+  border-radius: 0 var(--border-radius-md) var(--border-radius-md) 0;
 }
 
 /* 紧凑模式：去掉中间的边框 */
@@ -289,10 +291,10 @@
 .my-input-group-compact .my-input-wrapper:hover {
   /* 提升层级,避免边框遮挡 */
   z-index: 1;
-  border-color: #1890ff;
+  border-color: var(--primary-color);
 }
 
 .my-input-group-compact .my-input-wrapper:focus-within {
   z-index: 1;
-  border-color: #1890ff;
+  border-color: var(--primary-color);
 }

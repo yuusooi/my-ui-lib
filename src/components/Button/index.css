@@ -1,43 +1,4 @@
-/* Button 组件样式 */
-:root {
-  /* 主色调 */
-  --my-btn-primary: #165dff;
-  --my-btn-primary-hover: #4080ff;
-  /* 按下变深 */
-  --my-btn-primary-active: #0e42d2;
-
-  /* 文字颜色 */
-  --my-btn-text: #1d2129;
-
-  /* 边框颜色 */
-  --my-btn-border: #e5e6eb;
-
-  /* 尺寸（默认） */
-  --my-btn-height: 32px;
-  /* 按钮的内边距 */
-  --my-btn-padding: 4px 15px;
-  /* 按钮内字号 */
-  --my-btn-font-size: 14px;
-  /* 按钮的圆角半径 */
-  /*如果是 0px：就是直角的长方形，很锐利。
-    如果是 6px：角会稍微磨圆一点，看起来柔和、现代。
-    如果是 16px（或者高度的一半）：就会变成两头半圆的“胶囊形”按钮  */
-  --my-btn-radius: 6px;
-
-  /* 尺寸变体 */
-  --my-btn-height-mini: 24px;
-  --my-btn-padding-mini: 4px 10px;
-  --my-btn-font-size-mini: 12px;
-
-  --my-btn-height-small: 28px;
-  --my-btn-padding-small: 4px 15px;
-  --my-btn-font-size-small: 14px;
-
-  --my-btn-height-large: 36px;
-  --my-btn-padding-large: 8px 20px;
-  --my-btn-font-size-large: 16px;
-}
-
+/* Button 组件样式 - 双主题 Design Tokens */
 .my-btn {
   /* 布局属性（让按钮内容排好） */
   /* 按钮变flex容器，宽度根据内容自适应,不占满整行 */
@@ -46,22 +7,22 @@
   align-items: center;
   /* 内容水平居中 */
   justify-content: center;
-  /* 图标和文字之间的间距是8px */
-  gap: 8px;
+  /* 图标和文字之间的间距 */
+  gap: var(--spacing-sm, 8px);
 
   /* 尺寸属性（大小） */
-  height: var(--my-btn-height);
-  padding: var(--my-btn-padding);
-  font-size: var(--my-btn-font-size);
+  height: 32px;
+  padding: 4px 15px;
+  font-size: var(--font-size-base, 14px);
 
-  /* 边框 */
-  border: 1px solid rgb(173, 172, 172);
-  /* 圆角 */
-  border-radius: var(--my-btn-radius);
-  /* 深灰色文字 */
-  color: var(--my-btn-text);
-  /* 背景透明 */
-  background-color: transparent;
+  /* 边框 - 基础组件使用 component-border */
+  border: 1px solid var(--component-border, rgba(55, 53, 47, 0.16));
+  /* 圆角 - 使用 design token */
+  border-radius: var(--border-radius-md, 4px);
+  /* 文字颜色 - 基础组件使用 component-text */
+  color: var(--component-text, #37352f);
+  /* 背景色 - 基础组件使用 component-bg */
+  background-color: var(--component-bg, #ffffff);
 
   /* 交互属性 */
   /* 鼠标悬停显示手型 */
@@ -78,40 +39,47 @@
   box-sizing: border-box;
 }
 
+.my-btn:hover {
+  background-color: var(--component-hover-bg, rgba(55, 53, 47, 0.04));
+}
+
+/* Primary 按钮 - 品牌色 */
 .my-btn-primary {
-  background-color: var(--my-btn-primary);
-  border-color: var(--my-btn-primary);
-  color: #fff;
+  background-color: var(--primary-color, #0f0f0f);
+  border-color: var(--primary-color, #0f0f0f);
+  color: var(--primary-text-color, #ffffff);
 }
 
 .my-btn-primary:hover {
-  background-color: var(--my-btn-primary-hover);
-  border-color: var(--my-btn-primary-hover);
+  background-color: var(--primary-hover, #2f2f2f);
+  border-color: var(--primary-hover, #2f2f2f);
 }
 
 .my-btn-primary:active {
-  background-color: var(--my-btn-primary-active);
-  border-color: var(--my-btn-primary-active);
+  /* 稍微加深一点（通过 opacity 实现） */
+  opacity: 0.9;
 }
 
+/* 尺寸变体 */
 .my-btn-size-mini {
-  height: var(--my-btn-height-mini);
-  padding: var(--my-btn-padding-mini);
-  font-size: var(--my-btn-font-size-mini);
+  height: 24px;
+  padding: 4px 10px;
+  font-size: 12px;
 }
 
 .my-btn-size-small {
-  height: var(--my-btn-height-small);
-  padding: var(--my-btn-padding-small);
-  font-size: var(--my-btn-font-size-small);
+  height: 28px;
+  padding: 4px 15px;
+  font-size: var(--font-size-base);
 }
 
 .my-btn-size-large {
-  height: var(--my-btn-height-large);
-  padding: var(--my-btn-padding-large);
-  font-size: var(--my-btn-font-size-large);
+  height: 36px;
+  padding: 8px 20px;
+  font-size: 16px;
 }
 
+/* Loading 状态 */
 .my-btn-loading {
   /* 鼠标悬停显示禁止符号 */
   cursor: not-allowed;
@@ -138,7 +106,7 @@
 @keyframes my-btn-spin {
   /* 初始状态0度 */
   0% {
-    transform: rotate (0deg);
+    transform: rotate(0deg);
   }
   /* 结束状态：转一圈 */
   100% {

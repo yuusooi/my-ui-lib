@@ -1,14 +1,63 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import React, { useState } from 'react'
+import { useState } from 'react'
+
+// 直接导入最原生的 Modal，无需任何黑魔法！
 import Modal from './index'
+
+// 定义按钮组件，支持双主题
+const DemoButton = ({ children, onClick, style = {} }: any) => {
+  return (
+    <button
+      onClick={onClick}
+      className="demo-modal-trigger-btn"
+      style={{
+        padding: '8px 16px',
+        background: 'var(--component-bg, #ffffff)',
+        color: 'var(--component-text, #37352f)',
+        border: '1px solid var(--component-border, rgba(55, 53, 47, 0.16))',
+        borderRadius: '4px',
+        cursor: 'pointer',
+        ...style,
+      }}
+    >
+      {children}
+    </button>
+  )
+}
 
 const meta: Meta<typeof Modal> = {
   title: '反馈/Modal',
   component: Modal,
   tags: ['autodocs'],
   parameters: {
-    layout: 'centered',
+    layout: 'padded',
+    docs: {
+      story: {
+        // 确保 Docs 里的组件在独立的 iframe 中渲染，完全隔离不受外界干扰！
+        inline: false,
+        iframeHeight: 500,
+      },
+    },
   },
+  decorators: [
+    (Story) => (
+      <div
+        style={{
+          height: '500px',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      >
+        <style>{`
+          .demo-modal-trigger-btn:hover {
+            background: var(--component-hover-bg, rgba(55, 53, 47, 0.04)) !important;
+          }
+        `}</style>
+        <Story />
+      </div>
+    ),
+  ],
   argTypes: {
     visible: {
       control: 'boolean',
@@ -38,28 +87,13 @@ type Story = StoryObj<typeof Modal>
 
 // ============ 基础用法 ============
 
-/**
- * 基础弹窗 - 最简单的用法
- */
 export const Basic: Story = {
   render: () => {
     const [visible, setVisible] = useState(false)
 
     return (
       <div>
-        <button
-          onClick={() => setVisible(true)}
-          style={{
-            padding: '8px 16px',
-            background: '#165dff',
-            color: 'white',
-            border: 'none',
-            borderRadius: '4px',
-            cursor: 'pointer',
-          }}
-        >
-          打开弹窗
-        </button>
+        <DemoButton onClick={() => setVisible(true)}>打开弹窗</DemoButton>
 
         <Modal
           visible={visible}
@@ -74,28 +108,13 @@ export const Basic: Story = {
   },
 }
 
-/**
- * 无标题弹窗
- */
 export const NoTitle: Story = {
   render: () => {
     const [visible, setVisible] = useState(false)
 
     return (
       <div>
-        <button
-          onClick={() => setVisible(true)}
-          style={{
-            padding: '8px 16px',
-            background: '#165dff',
-            color: 'white',
-            border: 'none',
-            borderRadius: '4px',
-            cursor: 'pointer',
-          }}
-        >
-          打开无标题弹窗
-        </button>
+        <DemoButton onClick={() => setVisible(true)}>打开无标题弹窗</DemoButton>
 
         <Modal
           visible={visible}
@@ -110,28 +129,13 @@ export const NoTitle: Story = {
   },
 }
 
-/**
- * 无底部按钮弹窗
- */
 export const NoFooter: Story = {
   render: () => {
     const [visible, setVisible] = useState(false)
 
     return (
       <div>
-        <button
-          onClick={() => setVisible(true)}
-          style={{
-            padding: '8px 16px',
-            background: '#165dff',
-            color: 'white',
-            border: 'none',
-            borderRadius: '4px',
-            cursor: 'pointer',
-          }}
-        >
-          打开无底部弹窗
-        </button>
+        <DemoButton onClick={() => setVisible(true)}>打开无底部弹窗</DemoButton>
 
         <Modal
           visible={visible}
@@ -147,28 +151,13 @@ export const NoFooter: Story = {
   },
 }
 
-/**
- * 自定义底部按钮
- */
 export const CustomFooter: Story = {
   render: () => {
     const [visible, setVisible] = useState(false)
 
     return (
       <div>
-        <button
-          onClick={() => setVisible(true)}
-          style={{
-            padding: '8px 16px',
-            background: '#165dff',
-            color: 'white',
-            border: 'none',
-            borderRadius: '4px',
-            cursor: 'pointer',
-          }}
-        >
-          自定义底部按钮
-        </button>
+        <DemoButton onClick={() => setVisible(true)}>自定义底部按钮</DemoButton>
 
         <Modal
           visible={visible}
@@ -185,8 +174,9 @@ export const CustomFooter: Story = {
                 onClick={() => setVisible(false)}
                 style={{
                   padding: '6px 16px',
-                  border: '1px solid #d9d9d9',
-                  background: 'white',
+                  border: '1px solid var(--component-border)',
+                  background: 'var(--component-bg)',
+                  color: 'var(--component-text)',
                   borderRadius: '4px',
                   cursor: 'pointer',
                 }}
@@ -200,9 +190,9 @@ export const CustomFooter: Story = {
                 }}
                 style={{
                   padding: '6px 16px',
-                  border: '1px solid #165dff',
-                  background: '#165dff',
-                  color: 'white',
+                  border: '1px solid var(--primary-color, #165dff)',
+                  background: 'var(--primary-color, #165dff)',
+                  color: 'var(--primary-text-color, white)',
                   borderRadius: '4px',
                   cursor: 'pointer',
                 }}
@@ -223,28 +213,15 @@ export const CustomFooter: Story = {
 
 // ============ 交互配置 ============
 
-/**
- * 禁止点击遮罩关闭
- */
 export const MaskNotClosable: Story = {
   render: () => {
     const [visible, setVisible] = useState(false)
 
     return (
       <div>
-        <button
-          onClick={() => setVisible(true)}
-          style={{
-            padding: '8px 16px',
-            background: '#165dff',
-            color: 'white',
-            border: 'none',
-            borderRadius: '4px',
-            cursor: 'pointer',
-          }}
-        >
+        <DemoButton onClick={() => setVisible(true)}>
           禁止点击遮罩关闭
-        </button>
+        </DemoButton>
 
         <Modal
           visible={visible}
@@ -253,7 +230,13 @@ export const MaskNotClosable: Story = {
           onCancel={() => setVisible(false)}
           onOk={() => setVisible(false)}
         >
-          <p style={{ color: '#ff4d4f', fontWeight: 'bold', fontSize: '16px' }}>
+          <p
+            style={{
+              color: 'var(--error-color, #ff4d4f)',
+              fontWeight: 'bold',
+              fontSize: '16px',
+            }}
+          >
             ⚠️ 注意！
           </p>
           <p>这个弹窗禁止点击遮罩层关闭。</p>
@@ -264,28 +247,13 @@ export const MaskNotClosable: Story = {
   },
 }
 
-/**
- * 隐藏关闭按钮
- */
 export const NotClosable: Story = {
   render: () => {
     const [visible, setVisible] = useState(false)
 
     return (
       <div>
-        <button
-          onClick={() => setVisible(true)}
-          style={{
-            padding: '8px 16px',
-            background: '#165dff',
-            color: 'white',
-            border: 'none',
-            borderRadius: '4px',
-            cursor: 'pointer',
-          }}
-        >
-          隐藏关闭按钮
-        </button>
+        <DemoButton onClick={() => setVisible(true)}>隐藏关闭按钮</DemoButton>
 
         <Modal
           visible={visible}
@@ -302,9 +270,6 @@ export const NotClosable: Story = {
   },
 }
 
-/**
- * 完全禁用关闭 - 必须点击确定
- */
 export const ForceConfirm: Story = {
   render: () => {
     const [visible, setVisible] = useState(false)
@@ -315,7 +280,7 @@ export const ForceConfirm: Story = {
           onClick={() => setVisible(true)}
           style={{
             padding: '8px 16px',
-            background: '#ff4d4f',
+            background: 'var(--error-color, #ff4d4f)',
             color: 'white',
             border: 'none',
             borderRadius: '4px',
@@ -345,8 +310,9 @@ export const ForceConfirm: Story = {
                 }}
                 style={{
                   padding: '6px 16px',
-                  border: '1px solid #d9d9d9',
-                  background: 'white',
+                  border: '1px solid var(--component-border)',
+                  background: 'var(--component-bg)',
+                  color: 'var(--component-text)',
                   borderRadius: '4px',
                   cursor: 'pointer',
                 }}
@@ -360,8 +326,8 @@ export const ForceConfirm: Story = {
                 }}
                 style={{
                   padding: '6px 16px',
-                  border: '1px solid #ff4d4f',
-                  background: '#ff4d4f',
+                  border: '1px solid var(--error-color, #ff4d4f)',
+                  background: 'var(--error-color, #ff4d4f)',
                   color: 'white',
                   borderRadius: '4px',
                   cursor: 'pointer',
@@ -372,7 +338,9 @@ export const ForceConfirm: Story = {
             </div>
           }
         >
-          <p style={{ color: '#ff4d4f', fontWeight: 'bold' }}>
+          <p
+            style={{ color: 'var(--error-color, #ff4d4f)', fontWeight: 'bold' }}
+          >
             ⚠️ 此操作不可恢复！
           </p>
           <p>删除后数据将永久丢失，请谨慎操作。</p>
@@ -384,28 +352,15 @@ export const ForceConfirm: Story = {
 
 // ============ 宽度变体 ============
 
-/**
- * 小尺寸弹窗
- */
 export const Small: Story = {
   render: () => {
     const [visible, setVisible] = useState(false)
 
     return (
       <div>
-        <button
-          onClick={() => setVisible(true)}
-          style={{
-            padding: '8px 16px',
-            background: '#165dff',
-            color: 'white',
-            border: 'none',
-            borderRadius: '4px',
-            cursor: 'pointer',
-          }}
-        >
+        <DemoButton onClick={() => setVisible(true)}>
           小尺寸弹窗 (400px)
-        </button>
+        </DemoButton>
 
         <Modal
           visible={visible}
@@ -421,28 +376,15 @@ export const Small: Story = {
   },
 }
 
-/**
- * 大尺寸弹窗
- */
 export const Large: Story = {
   render: () => {
     const [visible, setVisible] = useState(false)
 
     return (
       <div>
-        <button
-          onClick={() => setVisible(true)}
-          style={{
-            padding: '8px 16px',
-            background: '#165dff',
-            color: 'white',
-            border: 'none',
-            borderRadius: '4px',
-            cursor: 'pointer',
-          }}
-        >
+        <DemoButton onClick={() => setVisible(true)}>
           大尺寸弹窗 (800px)
-        </button>
+        </DemoButton>
 
         <Modal
           visible={visible}
@@ -456,7 +398,7 @@ export const Large: Story = {
           <div
             style={{
               height: '200px',
-              background: '#f5f5f5',
+              background: 'var(--component-hover-bg, #f5f5f5)',
               borderRadius: '4px',
               display: 'flex',
               alignItems: 'center',
@@ -471,28 +413,13 @@ export const Large: Story = {
   },
 }
 
-/**
- * 全屏弹窗
- */
 export const FullScreen: Story = {
   render: () => {
     const [visible, setVisible] = useState(false)
 
     return (
       <div>
-        <button
-          onClick={() => setVisible(true)}
-          style={{
-            padding: '8px 16px',
-            background: '#165dff',
-            color: 'white',
-            border: 'none',
-            borderRadius: '4px',
-            cursor: 'pointer',
-          }}
-        >
-          全屏弹窗
-        </button>
+        <DemoButton onClick={() => setVisible(true)}>全屏弹窗</DemoButton>
 
         <Modal
           visible={visible}
@@ -511,9 +438,6 @@ export const FullScreen: Story = {
 
 // ============ 实际应用场景 ============
 
-/**
- * 确认删除弹窗
- */
 export const ConfirmDelete: Story = {
   render: () => {
     const [visible, setVisible] = useState(false)
@@ -529,7 +453,7 @@ export const ConfirmDelete: Story = {
           onClick={() => setVisible(true)}
           style={{
             padding: '8px 16px',
-            background: '#ff4d4f',
+            background: 'var(--error-color, #ff4d4f)',
             color: 'white',
             border: 'none',
             borderRadius: '4px',
@@ -555,8 +479,9 @@ export const ConfirmDelete: Story = {
                 onClick={() => setVisible(false)}
                 style={{
                   padding: '6px 16px',
-                  border: '1px solid #d9d9d9',
-                  background: 'white',
+                  border: '1px solid var(--component-border)',
+                  background: 'var(--component-bg)',
+                  color: 'var(--component-text)',
                   borderRadius: '4px',
                   cursor: 'pointer',
                 }}
@@ -567,8 +492,8 @@ export const ConfirmDelete: Story = {
                 onClick={handleDelete}
                 style={{
                   padding: '6px 16px',
-                  border: '1px solid #ff4d4f',
-                  background: '#ff4d4f',
+                  border: '1px solid var(--error-color, #ff4d4f)',
+                  background: 'var(--error-color, #ff4d4f)',
                   color: 'white',
                   borderRadius: '4px',
                   cursor: 'pointer',
@@ -581,16 +506,15 @@ export const ConfirmDelete: Story = {
           onCancel={() => setVisible(false)}
         >
           <p>确定要删除这个项目吗？</p>
-          <p style={{ color: '#ff4d4f' }}>此操作不可恢复！</p>
+          <p style={{ color: 'var(--error-color, #ff4d4f)' }}>
+            此操作不可恢复！
+          </p>
         </Modal>
       </div>
     )
   },
 }
 
-/**
- * 表单弹窗
- */
 export const FormModal: Story = {
   render: () => {
     const [visible, setVisible] = useState(false)
@@ -602,19 +526,7 @@ export const FormModal: Story = {
 
     return (
       <div>
-        <button
-          onClick={() => setVisible(true)}
-          style={{
-            padding: '8px 16px',
-            background: '#165dff',
-            color: 'white',
-            border: 'none',
-            borderRadius: '4px',
-            cursor: 'pointer',
-          }}
-        >
-          编辑用户信息
-        </button>
+        <DemoButton onClick={() => setVisible(true)}>编辑用户信息</DemoButton>
 
         <Modal
           visible={visible}
@@ -642,7 +554,9 @@ export const FormModal: Story = {
                 style={{
                   width: '100%',
                   padding: '8px',
-                  border: '1px solid #d9d9d9',
+                  border: '1px solid var(--component-border)',
+                  background: 'var(--component-bg)',
+                  color: 'var(--component-text)',
                   borderRadius: '4px',
                 }}
               />
@@ -664,7 +578,9 @@ export const FormModal: Story = {
                 style={{
                   width: '100%',
                   padding: '8px',
-                  border: '1px solid #d9d9d9',
+                  border: '1px solid var(--component-border)',
+                  background: 'var(--component-bg)',
+                  color: 'var(--component-text)',
                   borderRadius: '4px',
                 }}
               />
@@ -686,7 +602,9 @@ export const FormModal: Story = {
                 style={{
                   width: '100%',
                   padding: '8px',
-                  border: '1px solid #d9d9d9',
+                  border: '1px solid var(--component-border)',
+                  background: 'var(--component-bg)',
+                  color: 'var(--component-text)',
                   borderRadius: '4px',
                   resize: 'vertical',
                 }}
@@ -699,28 +617,13 @@ export const FormModal: Story = {
   },
 }
 
-/**
- * 详情查看弹窗
- */
 export const DetailModal: Story = {
   render: () => {
     const [visible, setVisible] = useState(false)
 
     return (
       <div>
-        <button
-          onClick={() => setVisible(true)}
-          style={{
-            padding: '8px 16px',
-            background: '#165dff',
-            color: 'white',
-            border: 'none',
-            borderRadius: '4px',
-            cursor: 'pointer',
-          }}
-        >
-          查看用户详情
-        </button>
+        <DemoButton onClick={() => setVisible(true)}>查看用户详情</DemoButton>
 
         <Modal
           visible={visible}
@@ -731,9 +634,9 @@ export const DetailModal: Story = {
               onClick={() => setVisible(false)}
               style={{
                 padding: '6px 16px',
-                border: '1px solid #165dff',
-                background: '#165dff',
-                color: 'white',
+                border: '1px solid var(--primary-color, #165dff)',
+                background: 'var(--primary-color, #165dff)',
+                color: 'var(--primary-text-color, white)',
                 borderRadius: '4px',
                 cursor: 'pointer',
               }}
@@ -764,7 +667,9 @@ export const DetailModal: Story = {
             </p>
             <p>
               <strong>状态：</strong>
-              <span style={{ color: '#52c41a' }}>活跃</span>
+              <span style={{ color: 'var(--success-color, #52c41a)' }}>
+                活跃
+              </span>
             </p>
           </div>
         </Modal>
@@ -773,28 +678,13 @@ export const DetailModal: Story = {
   },
 }
 
-/**
- * 图片预览弹窗
- */
 export const ImagePreview: Story = {
   render: () => {
     const [visible, setVisible] = useState(false)
 
     return (
       <div>
-        <button
-          onClick={() => setVisible(true)}
-          style={{
-            padding: '8px 16px',
-            background: '#165dff',
-            color: 'white',
-            border: 'none',
-            borderRadius: '4px',
-            cursor: 'pointer',
-          }}
-        >
-          查看图片
-        </button>
+        <DemoButton onClick={() => setVisible(true)}>查看图片</DemoButton>
 
         <Modal
           visible={visible}
@@ -805,9 +695,9 @@ export const ImagePreview: Story = {
               onClick={() => setVisible(false)}
               style={{
                 padding: '6px 16px',
-                border: '1px solid #165dff',
-                background: '#165dff',
-                color: 'white',
+                border: '1px solid var(--primary-color, #165dff)',
+                background: 'var(--primary-color, #165dff)',
+                color: 'var(--primary-text-color, white)',
                 borderRadius: '4px',
                 cursor: 'pointer',
               }}
@@ -821,12 +711,12 @@ export const ImagePreview: Story = {
             style={{
               width: '100%',
               height: '400px',
-              background: 'gray',
+              background: 'var(--component-hover-bg, gray)',
               borderRadius: '8px',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              color: 'white',
+              color: 'var(--text-color-secondary)',
               fontSize: '24px',
               fontWeight: 'bold',
             }}
@@ -839,28 +729,13 @@ export const ImagePreview: Story = {
   },
 }
 
-/**
- * 长内容滚动弹窗
- */
 export const LongContent: Story = {
   render: () => {
     const [visible, setVisible] = useState(false)
 
     return (
       <div>
-        <button
-          onClick={() => setVisible(true)}
-          style={{
-            padding: '8px 16px',
-            background: '#165dff',
-            color: 'white',
-            border: 'none',
-            borderRadius: '4px',
-            cursor: 'pointer',
-          }}
-        >
-          长内容弹窗
-        </button>
+        <DemoButton onClick={() => setVisible(true)}>长内容弹窗</DemoButton>
 
         <Modal
           visible={visible}
@@ -874,9 +749,9 @@ export const LongContent: Story = {
               }}
               style={{
                 padding: '6px 16px',
-                border: '1px solid #165dff',
-                background: '#165dff',
-                color: 'white',
+                border: '1px solid var(--primary-color, #165dff)',
+                background: 'var(--primary-color, #165dff)',
+                color: 'var(--primary-text-color, white)',
                 borderRadius: '4px',
                 cursor: 'pointer',
               }}
@@ -928,9 +803,6 @@ export const LongContent: Story = {
   },
 }
 
-/**
- * 多步骤操作弹窗
- */
 export const MultiStep: Story = {
   render: () => {
     const [visible, setVisible] = useState(false)
@@ -952,19 +824,7 @@ export const MultiStep: Story = {
 
     return (
       <div>
-        <button
-          onClick={() => setVisible(true)}
-          style={{
-            padding: '8px 16px',
-            background: '#165dff',
-            color: 'white',
-            border: 'none',
-            borderRadius: '4px',
-            cursor: 'pointer',
-          }}
-        >
-          多步骤操作
-        </button>
+        <DemoButton onClick={() => setVisible(true)}>多步骤操作</DemoButton>
 
         <Modal
           visible={visible}
@@ -989,8 +849,9 @@ export const MultiStep: Story = {
                 }}
                 style={{
                   padding: '6px 16px',
-                  border: '1px solid #d9d9d9',
-                  background: 'white',
+                  border: '1px solid var(--component-border)',
+                  background: 'var(--component-bg)',
+                  color: 'var(--component-text)',
                   borderRadius: '4px',
                   cursor: 'pointer',
                 }}
@@ -1002,8 +863,9 @@ export const MultiStep: Story = {
                   onClick={prevStep}
                   style={{
                     padding: '6px 16px',
-                    border: '1px solid #d9d9d9',
-                    background: 'white',
+                    border: '1px solid var(--component-border)',
+                    background: 'var(--component-bg)',
+                    color: 'var(--component-text)',
                     borderRadius: '4px',
                     cursor: 'pointer',
                   }}
@@ -1016,9 +878,9 @@ export const MultiStep: Story = {
                   onClick={nextStep}
                   style={{
                     padding: '6px 16px',
-                    border: '1px solid #165dff',
-                    background: '#165dff',
-                    color: 'white',
+                    border: '1px solid var(--primary-color, #165dff)',
+                    background: 'var(--primary-color, #165dff)',
+                    color: 'var(--primary-text-color, white)',
                     borderRadius: '4px',
                     cursor: 'pointer',
                   }}
@@ -1030,8 +892,8 @@ export const MultiStep: Story = {
                   onClick={handleFinish}
                   style={{
                     padding: '6px 16px',
-                    border: '1px solid #52c41a',
-                    background: '#52c41a',
+                    border: '1px solid var(--success-color, #52c41a)',
+                    background: 'var(--success-color, #52c41a)',
                     color: 'white',
                     borderRadius: '4px',
                     cursor: 'pointer',
@@ -1051,7 +913,9 @@ export const MultiStep: Story = {
                 <button
                   style={{
                     padding: '8px 16px',
-                    border: '1px solid #d9d9d9',
+                    border: '1px solid var(--component-border)',
+                    background: 'var(--component-bg)',
+                    color: 'var(--component-text)',
                     borderRadius: '4px',
                   }}
                 >
@@ -1060,7 +924,9 @@ export const MultiStep: Story = {
                 <button
                   style={{
                     padding: '8px 16px',
-                    border: '1px solid #d9d9d9',
+                    border: '1px solid var(--component-border)',
+                    background: 'var(--component-bg)',
+                    color: 'var(--component-text)',
                     borderRadius: '4px',
                   }}
                 >
@@ -1069,7 +935,9 @@ export const MultiStep: Story = {
                 <button
                   style={{
                     padding: '8px 16px',
-                    border: '1px solid #d9d9d9',
+                    border: '1px solid var(--component-border)',
+                    background: 'var(--component-bg)',
+                    color: 'var(--component-text)',
                     borderRadius: '4px',
                   }}
                 >
@@ -1089,7 +957,9 @@ export const MultiStep: Story = {
                   width: '100%',
                   padding: '8px',
                   marginBottom: '8px',
-                  border: '1px solid #d9d9d9',
+                  border: '1px solid var(--component-border)',
+                  background: 'var(--component-bg)',
+                  color: 'var(--component-text)',
                   borderRadius: '4px',
                 }}
               />
@@ -1099,7 +969,9 @@ export const MultiStep: Story = {
                 style={{
                   width: '100%',
                   padding: '8px',
-                  border: '1px solid #d9d9d9',
+                  border: '1px solid var(--component-border)',
+                  background: 'var(--component-bg)',
+                  color: 'var(--component-text)',
                   borderRadius: '4px',
                 }}
               />
@@ -1112,7 +984,7 @@ export const MultiStep: Story = {
               <div
                 style={{
                   padding: '16px',
-                  background: '#f5f5f5',
+                  background: 'var(--component-hover-bg)',
                   borderRadius: '4px',
                 }}
               >
@@ -1134,9 +1006,6 @@ export const MultiStep: Story = {
   },
 }
 
-/**
- * 成功提示弹窗
- */
 export const SuccessModal: Story = {
   render: () => {
     const [visible, setVisible] = useState(false)
@@ -1147,7 +1016,7 @@ export const SuccessModal: Story = {
           onClick={() => setVisible(true)}
           style={{
             padding: '8px 16px',
-            background: '#52c41a',
+            background: 'var(--success-color, #52c41a)',
             color: 'white',
             border: 'none',
             borderRadius: '4px',
@@ -1165,8 +1034,8 @@ export const SuccessModal: Story = {
               onClick={() => setVisible(false)}
               style={{
                 padding: '6px 16px',
-                border: '1px solid #52c41a',
-                background: '#52c41a',
+                border: '1px solid var(--success-color, #52c41a)',
+                background: 'var(--success-color, #52c41a)',
                 color: 'white',
                 borderRadius: '4px',
                 cursor: 'pointer',
@@ -1183,7 +1052,7 @@ export const SuccessModal: Story = {
                 width: '64px',
                 height: '64px',
                 margin: '0 auto 16px',
-                background: '#52c41a',
+                background: 'var(--success-color, #52c41a)',
                 borderRadius: '50%',
                 display: 'flex',
                 alignItems: 'center',
@@ -1204,7 +1073,9 @@ export const SuccessModal: Story = {
             >
               操作成功！
             </p>
-            <p style={{ color: '#666' }}>您的数据已成功保存</p>
+            <p style={{ color: 'var(--text-color-secondary)' }}>
+              您的数据已成功保存
+            </p>
           </div>
         </Modal>
       </div>
@@ -1212,9 +1083,6 @@ export const SuccessModal: Story = {
   },
 }
 
-/**
- * 警告提示弹窗
- */
 export const WarningModal: Story = {
   render: () => {
     const [visible, setVisible] = useState(false)
@@ -1225,7 +1093,7 @@ export const WarningModal: Story = {
           onClick={() => setVisible(true)}
           style={{
             padding: '8px 16px',
-            background: '#faad14',
+            background: 'var(--warning-color, #faad14)',
             color: 'white',
             border: 'none',
             borderRadius: '4px',
@@ -1243,8 +1111,8 @@ export const WarningModal: Story = {
               onClick={() => setVisible(false)}
               style={{
                 padding: '6px 16px',
-                border: '1px solid #faad14',
-                background: '#faad14',
+                border: '1px solid var(--warning-color, #faad14)',
+                background: 'var(--warning-color, #faad14)',
                 color: 'white',
                 borderRadius: '4px',
                 cursor: 'pointer',
@@ -1261,7 +1129,7 @@ export const WarningModal: Story = {
                 width: '64px',
                 height: '64px',
                 margin: '0 auto 16px',
-                background: '#faad14',
+                background: 'var(--warning-color, #faad14)',
                 borderRadius: '50%',
                 display: 'flex',
                 alignItems: 'center',
@@ -1282,7 +1150,9 @@ export const WarningModal: Story = {
             >
               请注意！
             </p>
-            <p style={{ color: '#666' }}>您的操作可能会导致数据丢失</p>
+            <p style={{ color: 'var(--text-color-secondary)' }}>
+              您的操作可能会导致数据丢失
+            </p>
           </div>
         </Modal>
       </div>

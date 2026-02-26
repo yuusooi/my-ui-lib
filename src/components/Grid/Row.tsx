@@ -5,7 +5,7 @@ import './grid.responsive.css'
 
 export interface RowProps {
   // 间距
-  gutter?: number
+  gutter?: number | number[] | [number, number]
   // 垂直对齐
   align?: 'top' | 'middle' | 'bottom' | 'stretch'
   // 水平对齐
@@ -27,6 +27,9 @@ const Row: React.FC<RowProps> = (props) => {
     className,
     children,
   } = props
+
+  const gutterX = Array.isArray(gutter) ? gutter[0] : gutter
+  const gutterY = Array.isArray(gutter) ? gutter[1] : 0
 
   // align映射到CSS
   const alignMap = {
@@ -68,8 +71,9 @@ const Row: React.FC<RowProps> = (props) => {
 
   // 计算style
   const rowStyle: CSSProperties = {
-    marginLeft: gutter ? -gutter / 2 : 0,
-    marginRight: gutter ? -gutter / 2 : 0,
+    marginLeft: gutterX ? -gutterX / 2 : 0,
+    marginRight: gutterX ? -gutterX / 2 : 0,
+    rowGap: gutterY ? gutterY : undefined,
     display: 'flex',
     flexWrap: 'wrap',
     alignItems,
@@ -79,7 +83,7 @@ const Row: React.FC<RowProps> = (props) => {
 
   // 渲染
   return (
-    <GutterContext.Provider value={gutter}>
+    <GutterContext.Provider value={gutterX}>
       <div className={finalClassName} style={rowStyle}>
         {children}
       </div>

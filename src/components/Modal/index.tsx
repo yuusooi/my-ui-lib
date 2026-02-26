@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { createPortal } from 'react-dom'
+import '../../styles/variables.css'
 import './index.css'
 
 export interface ModalProps {
@@ -21,6 +22,8 @@ export interface ModalProps {
   closable?: boolean
   // 宽度
   width?: number | string
+  // 允许自定义挂载点
+  getContainer?: HTMLElement | (() => HTMLElement)
 }
 
 const Modal: React.FC<ModalProps> = (props) => {
@@ -35,6 +38,7 @@ const Modal: React.FC<ModalProps> = (props) => {
     maskClosable = true, // 默认点击遮罩可以关闭
     closable = true, // 默认显示关闭按钮
     width = 520, // 默认宽度 520px
+    getContainer,
   } = props
 
   // 键盘事件处理函数
@@ -76,6 +80,12 @@ const Modal: React.FC<ModalProps> = (props) => {
   if (!visible) {
     return null
   }
+
+  // 动态计算挂载点，默认回退到 document.body
+  const container =
+    typeof getContainer === 'function'
+      ? getContainer()
+      : getContainer || document.body
 
   return createPortal(
     <>
@@ -131,7 +141,7 @@ const Modal: React.FC<ModalProps> = (props) => {
       </div>
     </>,
     // 目标容器 把弹窗渲染到document.body下，可以避免被父容器的overflow或者z-index限制
-    document.body
+    container
   )
 }
 

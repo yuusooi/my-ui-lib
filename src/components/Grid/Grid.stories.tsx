@@ -669,9 +669,12 @@ export const SidebarLayout: Story = {
   render: () => (
     <div>
       <h3>侧边栏布局</h3>
+      <p style={{ color: '#666', marginBottom: '16px' }}>
+        sm 断点（576px）以上显示左右布局，以下显示上下布局
+      </p>
 
       <Row gutter={16}>
-        <Col xs={24} lg={6}>
+        <Col xs={24} sm={6}>
           <div
             style={{
               background: '#001529',
@@ -689,7 +692,7 @@ export const SidebarLayout: Story = {
             </ul>
           </div>
         </Col>
-        <Col xs={24} lg={18}>
+        <Col xs={24} sm={18}>
           <div
             style={{
               background: 'white',

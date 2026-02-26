@@ -1,0 +1,38 @@
+name: CI/CD Pipeline
+
+# 触发条件：当代码push到main分支时触发
+on:
+  push:
+    branches: ['main']
+
+# 允许脚本修改GitHub仓库的权限（用于发布Pages）
+permissions:
+  contents: write
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 拉取代码
+        uses: actions/checkout@v4
+
+      - name: 设置 Node.js 环境
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: 安装依赖
+        run: npm install
+
+      - name: 运行单元测试
+        run: npm run test
+
+      - name: 打包Storybook
+        run: npm run build-storybook
+
+      - name: 部署到GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./storybook-static # 把刚刚打包出的文件夹传上网
