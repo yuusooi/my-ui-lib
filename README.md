@@ -17,6 +17,15 @@
 - **质量保障**: 引入 Vitest + React Testing Library，包含核心组件（如 Button、Form 数据流）的单元测试。
 - **工程化**: 配置 GitHub Actions 实现推送主分支后的 Storybook 自动化部署。
 
+## 包含组件
+
+目前已完成以下 15 个核心组件的开发与封装：
+
+- **通用与布局**: `Button` (按钮), `Layout` (布局), `Grid` (栅格), `Space` (间距), `Divider` (分割线)
+- **数据录入**: `Form` (表单), `Input` (输入框), `SchemaForm` (基于 Schema 的动态表单)
+- **数据展示**: `Table` (表格), `Card` (卡片), `Avatar` (头像), `Badge` (徽标), `Tag` (标签)
+- **反馈交互**: `Modal` (弹窗), `Alert` (警告提示), `Spin` (加载中)
+
 ## 快速接入
 
 ```bash

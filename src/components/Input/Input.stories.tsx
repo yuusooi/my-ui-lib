@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import Input from './index'
 
 const meta: Meta<typeof Input> = {
-  title: '通用/Input',
+  title: '数据录入/Input',
   component: Input,
   tags: ['autodocs'],
   parameters: {

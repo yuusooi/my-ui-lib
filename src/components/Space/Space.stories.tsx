@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import Space from './index'
 
 const meta: Meta<typeof Space> = {
-  title: '布局/Space',
+  title: '通用与布局/Space',
   component: Space,
   tags: ['autodocs'],
   argTypes: {

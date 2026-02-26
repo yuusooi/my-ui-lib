@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import Layout from './index'
 
 const meta: Meta<typeof Layout> = {
-  title: '布局/Layout',
+  title: '通用与布局/Layout',
   component: Layout,
   tags: ['autodocs'],
 }

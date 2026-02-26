@@ -3,7 +3,7 @@ import Button from './index'
 
 // 1. 定义元数据（Meta）：告诉 Storybook 这个组件叫什么，有哪些参数
 const meta: Meta<typeof Button> = {
-  title: '通用/Button',
+  title: '通用与布局/Button',
   component: Button,
   tags: ['autodocs'],
   parameters: {

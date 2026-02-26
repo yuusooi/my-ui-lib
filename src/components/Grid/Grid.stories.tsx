@@ -3,7 +3,7 @@ import Row from './Row'
 import Col from './Col'
 
 const meta: Meta<typeof Row> = {
-  title: '布局/Grid',
+  title: '通用与布局/Grid',
   component: Row,
   tags: ['autodocs'],
   parameters: {

@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import Divider from './index'
 
 const meta: Meta<typeof Divider> = {
-  title: '布局/Divider',
+  title: '通用与布局/Divider',
   component: Divider,
   tags: ['autodocs'],
   argTypes: {

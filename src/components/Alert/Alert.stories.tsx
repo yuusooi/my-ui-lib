@@ -8,7 +8,7 @@ import Alert from './index'
  * 展示 Alert 组件的各种用法和状态
  */
 const meta: Meta<typeof Alert> = {
-  title: '反馈组件/Alert',
+  title: '反馈交互/Alert',
   component: Alert,
   tags: ['autodocs'],
   parameters: {

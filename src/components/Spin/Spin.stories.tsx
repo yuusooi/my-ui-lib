@@ -8,7 +8,7 @@ import Spin from './index'
  * 展示 Spin 组件的各种用法和状态
  */
 const meta: Meta<typeof Spin> = {
-  title: '反馈组件/Spin',
+  title: '反馈交互/Spin',
   component: Spin,
   tags: ['autodocs'],
   parameters: {

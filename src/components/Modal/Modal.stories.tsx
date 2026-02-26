@@ -1,7 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { useState } from 'react'
-
-// 直接导入最原生的 Modal，无需任何黑魔法！
 import Modal from './index'
 
 // 定义按钮组件，支持双主题
@@ -26,7 +24,7 @@ const DemoButton = ({ children, onClick, style = {} }: any) => {
 }
 
 const meta: Meta<typeof Modal> = {
-  title: '反馈/Modal',
+  title: '反馈交互/Modal',
   component: Modal,
   tags: ['autodocs'],
   parameters: {
