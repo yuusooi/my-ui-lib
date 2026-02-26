@@ -1,73 +1,24 @@
-# React + TypeScript + Vite
+# my-ui-lib
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+基于 React 18 + TypeScript 开发的个人 UI 组件库，包含基础的展示组件与完整的表单解决方案。
 
-Currently, two official plugins are available:
+[![Deploy Storybook](https://github.com/yuusooi/my-ui-lib/actions/workflows/deploy-docs.yml/badge.svg)](https://github.com/yuusooi/my-ui-lib/actions)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 在线文档
 
-## React Compiler
+[Storybook 组件预览](https://yuusooi.github.io/my-ui-lib/)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 技术特性
 
-## Expanding the ESLint configuration
+- **主题系统**: 基于 CSS Variables 实现 Light / Dark 双主题切换。
+- **表单引擎**: 内部基于 `Context` 实现状态收集与分发，封装受控组件逻辑。提供 `SchemaForm` 支持 JSON 协议驱动的表单渲染。
+- **按需加载**: 基于 Vite 打包 ESM / CJS 产物，配置 `sideEffects` 支持 Tree-Shaking。
+- **类型安全**: 全站 TypeScript 编写。
+- **质量保障**: 引入 Vitest + React Testing Library，包含核心组件（如 Button、Form 数据流）的单元测试。
+- **工程化**: 配置 GitHub Actions 实现推送主分支后的 Storybook 自动化部署。
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 快速接入
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install my-ui-lib
 ```
