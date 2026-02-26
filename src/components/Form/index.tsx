@@ -19,6 +19,44 @@ export const Form: React.FC<FormProps> = ({
   // 记录用户是否接触过某个字段
   const [touched, setTouched] = useState<Record<string, boolean>>({})
 
+  // 记录哪些字段是必填的
+  const [requiredFields, setRequiredFields] = useState<Record<string, boolean>>({})
+
+  // 注册字段到表单
+  const registerField = (name: string, initialValue?: any) => {
+    setValues((prevValues) => {
+      // 如果字段已经存在，不覆盖
+      if (name in prevValues) {
+        return prevValues
+      }
+      // 使用传入的初始值，或者从 initialValues 中获取，或者使用空字符串
+      const value =
+        initialValue !== undefined
+          ? initialValue
+          : initialValues?.[name] !== undefined
+            ? initialValues[name]
+            : ''
+      return {
+        ...prevValues,
+        [name]: value,
+      }
+    })
+  }
+
+  // 注册字段是否必填
+  const registerRequired = (name: string, required: boolean) => {
+    setRequiredFields((prev) => {
+      // 如果值没有变化，不更新
+      if (prev[name] === required) {
+        return prev
+      }
+      return {
+        ...prev,
+        [name]: required,
+      }
+    })
+  }
+
   // 实现字段更新逻辑
   const setFieldValue = (name: string, value: any) => {
     // 用展开运算符创建一个新对象，把旧数据和新数据合并
@@ -54,9 +92,11 @@ export const Form: React.FC<FormProps> = ({
 
   // 校验某个字段
   const validateField = (name: string, value: any): string => {
-    // 只做简单的必填校验,可以扩展更复杂的校验规则
-    if (value === undefined || value === null || value === '') {
-      return '该字段不能为空'
+    // 只对必填字段进行校验
+    if (requiredFields[name]) {
+      if (value === undefined || value === null || value === '') {
+        return '该字段不能为空'
+      }
     }
     return '' // 没有错误
   }
@@ -90,7 +130,7 @@ export const Form: React.FC<FormProps> = ({
   }
 
   // 用FormContext.Provider包裹，把values和setFieldValue广播给所有子组件
-  // 返回组件结构，value里增加了errors、setFieldError 、touched、setFieldTouched
+  // 返回组件结构，value里增加了errors、setFieldError 、touched、setFieldTouched、registerField、registerRequired
   return (
     <FormContext.Provider
       value={{
@@ -100,6 +140,8 @@ export const Form: React.FC<FormProps> = ({
         setFieldError,
         touched,
         setFieldTouched,
+        registerField,
+        registerRequired,
       }}
     >
       <form onSubmit={handleSubmit}>{children}</form>

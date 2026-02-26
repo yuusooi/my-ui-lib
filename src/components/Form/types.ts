@@ -32,6 +32,10 @@ export interface FormContextType {
   touched: Record<string, boolean>
   // 标记某个字段为 已接触
   setFieldTouched: (name: string, touched: boolean) => void
+  // 注册字段到表单
+  registerField: (name: string, initialValue?: any) => void
+  // 注册字段是否必填
+  registerRequired: (name: string, required: boolean) => void
 }
 
 // 4. 创建 FormContext（先给一个默认值，后续会被 Form 组件覆盖）
@@ -42,6 +46,8 @@ export const FormContext = React.createContext<FormContextType>({
   setFieldError: () => {},
   touched: {},
   setFieldTouched: () => {},
+  registerField: () => {},
+  registerRequired: () => {},
 })
 
 // 定义 FormItem 组件接收的 props

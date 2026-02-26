@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { FormContext } from './types'
 import type { FormItemProps } from './types'
 
@@ -17,7 +17,15 @@ export const FormItem: React.FC<FormItemProps> = ({
     setFieldError,
     touched,
     setFieldTouched,
+    registerField,
+    registerRequired,
   } = useContext(FormContext)
+
+  // 注册字段到表单
+  useEffect(() => {
+    registerField(name)
+    registerRequired(name, required || false)
+  }, [name, required, registerField, registerRequired])
 
   // 获取当前字段的值
   const fieldValue = values[name] // 比如 values['username']
