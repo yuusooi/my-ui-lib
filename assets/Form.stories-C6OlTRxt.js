@@ -1,4 +1,4 @@
-import{j as e}from"./iframe-BrsRkbZt.js";import{F as a,a as r}from"./index-CN6a8fbq.js";import{I as o}from"./index-6--mJ4Rm.js";import"./preload-helper-PPVm8Dsz.js";const h={title:"数据录入/Form",component:a,tags:["autodocs"],parameters:{layout:"padded",docs:{description:{component:`
+import{j as e}from"./iframe-BblueGYI.js";import{F as a,a as r}from"./index-BJRLn4J3.js";import{I as o}from"./index-CMGU_2ki.js";import"./preload-helper-PPVm8Dsz.js";const h={title:"数据录入/Form",component:a,tags:["autodocs"],parameters:{layout:"padded",docs:{description:{component:`
 # Form 组件
 
 Form 组件是一个完整的表单管理系统，提供以下功能：
