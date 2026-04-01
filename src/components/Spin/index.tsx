@@ -2,34 +2,6 @@ import React from 'react'
 import type { SpinProps, SpinSize } from './types'
 import './style.css'
 
-/**
- * Spin 加载中组件
- *
- * 用于页面和区块的加载中状态。
- *
- * @example
- * ```tsx
- * // 基础用法 - 独立使用
- * <Spin />
- *
- * // 带提示文字
- * <Spin tip="加载中..." />
- *
- * // 不同尺寸
- * <Spin size="small" />
- * <Spin size="large" />
- *
- * // 包裹模式 - 加载内容
- * <Spin spinning={true}>
- *   <div>这里是内容</div>
- * </Spin>
- *
- * // 控制加载状态
- * <Spin spinning={isLoading}>
- *   <Table data={data} />
- * </Spin>
- * ```
- */
 const Spin: React.FC<SpinProps> = ({
   spinning = true,
   size = 'default',
@@ -39,14 +11,9 @@ const Spin: React.FC<SpinProps> = ({
   style,
 }) => {
   // 判断是否为包裹模式：如果有 children，启用包裹模式
-  // 面试重点：为什么需要区分两种模式？
-  // 答：独立模式直接渲染加载指示器；包裹模式需要在原有内容上覆盖遮罩层，
-  //     两种 DOM 结构完全不同，需要通过 children 是否存在来判断
   const isWrapperMode = children !== undefined
 
   // 渲染旋转的加载图标
-  // 面试重点：为什么使用 Inline SVG 而不是 icon 库？
-  // 答：零外部依赖，减小打包体积，完全可控样式，支持 CSS 变量
   const renderSpinner = () => {
     return (
       <div className="my-spinner">
@@ -65,7 +32,7 @@ const Spin: React.FC<SpinProps> = ({
     )
   }
 
-  // ==================== 模式 A：独立使用 ====================
+  // 独立使用
   // 直接渲染加载指示器
   if (!isWrapperMode) {
     // 如果不处于加载状态，返回 null
@@ -87,12 +54,8 @@ const Spin: React.FC<SpinProps> = ({
     )
   }
 
-  // ==================== 模式 B：包裹模式 ====================
+  // 包裹模式
   // 渲染遮罩层 + 内容
-  // 面试重点：包裹模式的 DOM 结构设计？
-  // 答：外层 position: relative，内容正常渲染，遮罩层 position: absolute 覆盖在上方
-  //     遮罩层使用 inset: 0 + z-index: 10 确保完全覆盖
-
   const wrapperClassNames = ['my-spin-nested-wrapper']
 
   if (className) {

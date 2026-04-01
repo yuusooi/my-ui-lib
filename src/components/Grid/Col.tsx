@@ -168,7 +168,7 @@ export interface ColProps {
 
 const Col: React.FC<ColProps> = (props) => {
   const {
-    span, // ❌ 注意：去掉了 "= 24" 的默认赋值
+    span,
     offset,
     push,
     pull,
@@ -220,7 +220,6 @@ const Col: React.FC<ColProps> = (props) => {
   addResponsiveClass('lg', lgConfig)
   addResponsiveClass('xl', xlConfig)
 
-  // ✅ 核心修复：更严谨的兜底逻辑
   const hasResponsive =
     xs !== undefined ||
     sm !== undefined ||
@@ -233,7 +232,7 @@ const Col: React.FC<ColProps> = (props) => {
     if (xsConfig.span === undefined) classNames.push(`my-col-xs-span-${span}`)
   } else if (!hasResponsive) {
     // 既没有传 span，也没有任何响应式断点，才默认占据 24 列
-    classNames.push(`my-col-xs-span-24`)
+    classNames.push('my-col-xs-span-24')
   }
 
   // 基础偏移量也需要做类似的兜底判断

@@ -23,7 +23,6 @@ test('2. 应该能正确触发 onClick 点击事件', () => {
 })
 
 test('3. 传入 type="primary" 时，应该有对应的 CSS 类名', () => {
-  // 注意：这里的 'my-btn-primary' 要换成你 Button 组件实际生成的类名！
   render(<Button type="primary">主按钮</Button>)
   const btnElement = screen.getByText('主按钮')
 

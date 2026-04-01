@@ -43,14 +43,16 @@ import { Input } from './components/Input'
   },
   decorators: [
     (Story) => (
-      <div style={{
-        width: '500px',
-        padding: '24px',
-        border: '1px solid var(--component-border)',
-        borderRadius: '8px',
-        background: 'var(--component-bg)',
-        color: 'var(--text-color)',
-      }}>
+      <div
+        style={{
+          width: '500px',
+          padding: '24px',
+          border: '1px solid var(--component-border)',
+          borderRadius: '8px',
+          background: 'var(--component-bg)',
+          color: 'var(--text-color)',
+        }}
+      >
         <Story />
       </div>
     ),
@@ -60,7 +62,7 @@ import { Input } from './components/Input'
 export default meta
 type Story = StoryObj<typeof Form>
 
-// ============ 测试用例 1：基础登录表单 ============
+// 基础登录表单
 export const BasicLogin: Story = {
   name: '基础登录表单',
   render: () => {
@@ -106,7 +108,7 @@ export const BasicLogin: Story = {
   },
 }
 
-// ============ 测试用例 2：用户注册表单（多字段） ============
+// 用户注册表单（多字段
 export const Registration: Story = {
   name: '用户注册表单',
   render: () => {
@@ -161,7 +163,7 @@ export const Registration: Story = {
   },
 }
 
-// ============ 测试用例 3：带初始值的编辑表单 ============
+// 带初始值的编辑表单
 export const EditProfile: Story = {
   name: '编辑个人信息（带初始值）',
   render: () => {
@@ -230,7 +232,7 @@ export const EditProfile: Story = {
   },
 }
 
-// ============ 测试用例 4：必填校验演示 ============
+// 必填校验演示
 export const ValidationDemo: Story = {
   name: '必填校验演示',
   render: () => {
@@ -280,7 +282,7 @@ export const ValidationDemo: Story = {
   },
 }
 
-// ============ 测试用例 5：搜索表单（无校验） ============
+// 搜索表单（无校验）
 export const SearchForm: Story = {
   name: '搜索表单（无校验）',
   render: () => {

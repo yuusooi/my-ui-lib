@@ -267,7 +267,7 @@ const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
     // forwardRef传进来的ref交给父组件使用，内部需要拎一个ref来操作DOM
     const textAreaRef = useRef<HTMLTextAreaElement>(null)
 
-    // ★★★ 修复点：使用 useImperativeHandle 暴露 ref 给父组件 ★★★
+    // 使用 useImperativeHandle 暴露 ref 给父组件
     useImperativeHandle(ref, () => textAreaRef.current!)
 
     // 计算自适应高度
@@ -462,24 +462,7 @@ const Group: React.FC<GroupProps> = ({
 
 Group.displayName = 'Input.Group'
 
-// export default Input;
-
-// // 同时也导出 Input 组件（方便命名导入）
-// export { Input };
-
-// interface InputComponent extends React.ForwardRefExoticComponent<InputProps & React.RefAttributes<HTMLInputElement>> {
-//     TextArea: typeof TextArea;
-//     Group: typeof Group;
-// }
-
-// // 类型断言
-// (Input as InputComponent).TextArea = TextArea;
-// (Input as InputComponent).Group = Group;
-
-// // 同时也单独导出 TextArea 和 Group（方便解构导入）
-// export { TextArea, Group };
-
-// 1. 定义复合组件类型
+// 定义复合组件类型
 type InputComponent = React.ForwardRefExoticComponent<
   InputProps & React.RefAttributes<HTMLInputElement>
 > & {
@@ -487,17 +470,16 @@ type InputComponent = React.ForwardRefExoticComponent<
   Group: typeof Group
 }
 
-// 2. 将 InternalInput 转换为 InputComponent 类型，并赋值给 Input
-// 这一步告诉 TypeScript：Input 变量不仅是一个组件，它上面还有 TextArea 和 Group
+// 将 InternalInput 转换为 InputComponent 类型，并赋值给 Input
 const Input = BaseInput as InputComponent
 
-// 3. 实际挂载静态属性
+// 实际挂载静态属性
 Input.TextArea = TextArea
 Input.Group = Group
 
-// 4. 单独导出子组件（可选，方便单独引用）
+// 单独导出子组件
 export { TextArea, Group }
 
-// 5. 导出 Input（此时 Input 已经包含了 TextArea 和 Group，类型也是正确的）
+// 导出 Input
 export { Input }
 export default Input

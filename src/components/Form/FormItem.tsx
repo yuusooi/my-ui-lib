@@ -83,7 +83,7 @@ export const FormItem: React.FC<FormItemProps> = ({
   const clonedChildren = React.cloneElement(children, {
     value: fieldValue, // 注入当前字段的值
     onChange: handleChange, // 注入变化处理函数
-    onBlur: handleBlur, // 【修复】注入 onBlur 事件，用于用户离开输入框时触发校验
+    onBlur: handleBlur, // 注入 onBlur 事件，用于用户离开输入框时触发校验
   } as any) // 用as any绕过类型检查 不知道子组件具体是什么类型
 
   // 渲染 label

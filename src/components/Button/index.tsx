@@ -2,43 +2,7 @@ import React, { useMemo } from 'react'
 import type { ButtonProps } from './types'
 import './index.css'
 
-/**
- * Button 组件
- * 基于 Arco Design 简化实现，支持多种类型、尺寸、状态和形状
- *
- * @example
- * ```tsx
- * // 基础用法
- * <Button>默认按钮</Button>
- *
- * // 按钮类型
- * <Button type="primary">主要按钮</Button>
- * <Button type="dashed">虚线按钮</Button>
- * <Button type="text">文字按钮</Button>
- *
- * // 带状态
- * <Button status="danger">危险操作</Button>
- * <Button status="success">成功状态</Button>
- *
- * // 带尺寸
- * <Button size="large">大型按钮</Button>
- * <Button size="small">小型按钮</Button>
- *
- * // 带图标和加载
- * <Button icon={<Icon />}>带图标</Button>
- * <Button loading>加载中...</Button>
- *
- * // 链接按钮
- * <Button href="https://example.com">跳转链接</Button>
- *
- * // 形状
- * <Button shape="circle">圆</Button>
- * <Button shape="round">圆角</Button>
- * ```
- */
 const Button: React.FC<ButtonProps> = (props) => {
-  // TODO: 实现 Button 组件
-  // 属性：
   const {
     as = 'button', //默认属性
     type = 'default', // 按钮类型

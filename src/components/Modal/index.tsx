@@ -29,15 +29,15 @@ export interface ModalProps {
 const Modal: React.FC<ModalProps> = (props) => {
   // 解构 props，提取需要的属性
   const {
-    visible = false, // 默认不显示
-    onCancel, // 关闭回调
-    onOk, // 确认回调
-    title, // 标题
-    children, // 内容
-    footer, // 底部
-    maskClosable = true, // 默认点击遮罩可以关闭
-    closable = true, // 默认显示关闭按钮
-    width = 520, // 默认宽度 520px
+    visible = false,
+    onCancel,
+    onOk,
+    title,
+    children,
+    footer,
+    maskClosable = true,
+    closable = true,
+    width = 520,
     getContainer,
   } = props
 
