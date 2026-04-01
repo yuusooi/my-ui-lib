@@ -1,35 +1,4 @@
-import{r as U,j as e}from"./iframe-BblueGYI.js";import"./preload-helper-PPVm8Dsz.js";const r=C=>{const{as:R="button",type:L="default",status:w="default",size:M="default",shape:E="square",disabled:P=!1,loading:n=!1,loadingFixedWidth:$=!1,long:W=!1,htmlType:O="button",children:F,className:k,style:N,icon:G,href:J,target:K,onClick:A,...Q}=C,H=U.useMemo(()=>{const t=["my-btn"];return L!=="default"&&t.push(`my-btn-${L}`),w!=="default"&&t.push(`my-btn-status-${w}`),M!=="default"&&t.push(`my-btn-size-${M}`),E!=="square"&&t.push(`my-btn-shape-${E}`),n&&t.push("my-btn-loading"),W&&t.push("my-btn-long"),k&&t.push(k),t.join(" ")},[L,w,M,E,n,W,k]),D=n?n?e.jsx("span",{className:"my-btn-loading-icon"}):null:G,I=n&&$?e.jsxs(e.Fragment,{children:[D,e.jsx("span",{style:{visibility:"hidden"},children:F})]}):n?e.jsx(e.Fragment,{children:D}):e.jsxs(e.Fragment,{children:[D,F]});return R=="a"?e.jsx("a",{className:H,style:N,href:J,target:K,onClick:A,children:I}):e.jsx("button",{...Q,className:H,style:N,type:O,disabled:P||n,onClick:A,children:I})};r.__docgenInfo={description:`Button 组件
-基于 Arco Design 简化实现，支持多种类型、尺寸、状态和形状
-
-@example
-\`\`\`tsx
-// 基础用法
-<Button>默认按钮</Button>
-
-// 按钮类型
-<Button type="primary">主要按钮</Button>
-<Button type="dashed">虚线按钮</Button>
-<Button type="text">文字按钮</Button>
-
-// 带状态
-<Button status="danger">危险操作</Button>
-<Button status="success">成功状态</Button>
-
-// 带尺寸
-<Button size="large">大型按钮</Button>
-<Button size="small">小型按钮</Button>
-
-// 带图标和加载
-<Button icon={<Icon />}>带图标</Button>
-<Button loading>加载中...</Button>
-
-// 链接按钮
-<Button href="https://example.com">跳转链接</Button>
-
-// 形状
-<Button shape="circle">圆</Button>
-<Button shape="round">圆角</Button>
-\`\`\``,methods:[],displayName:"Button",props:{as:{required:!1,tsType:{name:"union",raw:"'a' | 'button'",elements:[{name:"literal",value:"'a'"},{name:"literal",value:"'button'"}]},description:`渲染成什么标签
+import{r as U,j as e}from"./iframe-BanNrfm3.js";import"./preload-helper-PPVm8Dsz.js";const r=C=>{const{as:R="button",type:z="default",status:w="default",size:M="default",shape:E="square",disabled:P=!1,loading:a=!1,loadingFixedWidth:$=!1,long:D=!1,htmlType:O="button",children:F,className:k,style:N,icon:G,href:J,target:K,onClick:H,...Q}=C,A=U.useMemo(()=>{const t=["my-btn"];return z!=="default"&&t.push(`my-btn-${z}`),w!=="default"&&t.push(`my-btn-status-${w}`),M!=="default"&&t.push(`my-btn-size-${M}`),E!=="square"&&t.push(`my-btn-shape-${E}`),a&&t.push("my-btn-loading"),D&&t.push("my-btn-long"),k&&t.push(k),t.join(" ")},[z,w,M,E,a,D,k]),W=a?a?e.jsx("span",{className:"my-btn-loading-icon"}):null:G,I=a&&$?e.jsxs(e.Fragment,{children:[W,e.jsx("span",{style:{visibility:"hidden"},children:F})]}):a?e.jsx(e.Fragment,{children:W}):e.jsxs(e.Fragment,{children:[W,F]});return R=="a"?e.jsx("a",{className:A,style:N,href:J,target:K,onClick:H,children:I}):e.jsx("button",{...Q,className:A,style:N,type:O,disabled:P||a,onClick:H,children:I})};r.__docgenInfo={description:"",methods:[],displayName:"Button",props:{as:{required:!1,tsType:{name:"union",raw:"'a' | 'button'",elements:[{name:"literal",value:"'a'"},{name:"literal",value:"'button'"}]},description:`渲染成什么标签
 @description 控制组件最终渲染成的 HTML 标签
 @default 'button'
 - 'a': 渲染成 <a> 标签
@@ -77,17 +46,17 @@ import{r as U,j as e}from"./iframe-BblueGYI.js";import"./preload-helper-PPVm8Dsz
 - success: 成功状态（绿色）
 - default: 默认状态`},long:{required:!1,tsType:{name:"boolean"},description:`宽度是否自适应容器
 @description 设置后按钮宽度拉伸至 100%
-@default false`}}};const Z={title:"通用与布局/Button",component:r,tags:["autodocs"],parameters:{layout:"centered"},argTypes:{type:{control:"select",options:["default","primary","secondary","dashed","text","outline"],description:"按钮类型"},size:{control:"select",options:["mini","small","default","large"],description:"按钮尺寸"},status:{control:"select",options:["default","warning","danger","success"],description:"按钮状态"},shape:{control:"select",options:["square","circle","round"],description:"按钮形状"},as:{control:"select",options:["button","a"],description:"渲染标签类型"},disabled:{control:"boolean",description:"是否禁用"},loading:{control:"boolean",description:"是否加载中"},loadingFixedWidth:{control:"boolean",description:"加载时保持宽度"},long:{control:"boolean",description:"宽度拉伸"},href:{control:"text",description:"链接地址"},target:{control:"select",options:["_self","_blank","_parent","_top"],description:"链接打开方式"},htmlType:{control:"select",options:["button","submit","reset"],description:"原生 button type"},onClick:{action:"clicked"}}},a={args:{children:"默认按钮",type:"default"}},s={args:{children:"主要按钮",type:"primary"}},o={args:{children:"次要按钮",type:"secondary"}},i={args:{children:"虚线按钮",type:"dashed"}},c={args:{children:"文字按钮",type:"text"}},d={args:{children:"线框按钮",type:"outline"}},p={args:{children:"删除",type:"primary",status:"danger"}},l={args:{children:"警告操作",type:"primary",status:"warning"}},u={args:{children:"操作成功",type:"primary",status:"success"}},m={args:{children:"迷你按钮",type:"primary",size:"mini"}},y={args:{children:"小型按钮",type:"primary",size:"small"}},g={args:{children:"大型按钮",type:"primary",size:"large"}},h={args:{children:"🔍",type:"primary",shape:"circle"}},f={args:{children:"圆角按钮",type:"primary",shape:"round"}},x={args:{children:"禁用按钮",type:"primary",disabled:!0}},B={args:{children:"加载中",type:"default",loading:!0}},b={args:{children:"提交",type:"default",loading:!0,loadingFixedWidth:!0}},v={render:()=>e.jsxs("div",{style:{display:"flex",gap:"8px"},children:[e.jsx(r,{type:"default",children:"取消"}),e.jsx(r,{type:"primary",children:"确定"})]})},S={args:{children:"长按钮",type:"primary",long:!0},parameters:{layout:"padded"}},T={args:{children:"下载",type:"primary",icon:e.jsx("span",{children:"⬇️"})}},j={args:{children:"跳转链接",type:"primary",as:"a",href:"https://example.com",target:"_blank"}},q={args:{children:"提交表单",type:"primary",htmlType:"submit"}},_={render:()=>e.jsxs("div",{style:{display:"flex",gap:"8px",flexWrap:"wrap"},children:[e.jsx(r,{type:"default",children:"默认"}),e.jsx(r,{type:"primary",children:"主要"}),e.jsx(r,{type:"secondary",children:"次要"}),e.jsx(r,{type:"dashed",children:"虚线"}),e.jsx(r,{type:"text",children:"文字"}),e.jsx(r,{type:"outline",children:"线框"})]})},z={render:()=>e.jsxs("div",{style:{display:"flex",gap:"8px",alignItems:"center"},children:[e.jsx(r,{type:"primary",size:"mini",children:"Mini"}),e.jsx(r,{type:"primary",size:"small",children:"Small"}),e.jsx(r,{type:"primary",size:"default",children:"Default"}),e.jsx(r,{type:"primary",size:"large",children:"Large"})]})};a.parameters={...a.parameters,docs:{...a.parameters?.docs,source:{originalSource:`{
+@default false`}}};const Z={title:"通用与布局/Button",component:r,tags:["autodocs"],parameters:{layout:"centered"},argTypes:{type:{control:"select",options:["default","primary","secondary","dashed","text","outline"],description:"按钮类型"},size:{control:"select",options:["mini","small","default","large"],description:"按钮尺寸"},status:{control:"select",options:["default","warning","danger","success"],description:"按钮状态"},shape:{control:"select",options:["square","circle","round"],description:"按钮形状"},as:{control:"select",options:["button","a"],description:"渲染标签类型"},disabled:{control:"boolean",description:"是否禁用"},loading:{control:"boolean",description:"是否加载中"},loadingFixedWidth:{control:"boolean",description:"加载时保持宽度"},long:{control:"boolean",description:"宽度拉伸"},href:{control:"text",description:"链接地址"},target:{control:"select",options:["_self","_blank","_parent","_top"],description:"链接打开方式"},htmlType:{control:"select",options:["button","submit","reset"],description:"原生 button type"},onClick:{action:"clicked"}}},s={args:{children:"默认按钮",type:"default"}},n={args:{children:"主要按钮",type:"primary"}},o={args:{children:"次要按钮",type:"secondary"}},i={args:{children:"虚线按钮",type:"dashed"}},c={args:{children:"文字按钮",type:"text"}},d={args:{children:"线框按钮",type:"outline"}},p={args:{children:"删除",type:"primary",status:"danger"}},l={args:{children:"警告操作",type:"primary",status:"warning"}},u={args:{children:"操作成功",type:"primary",status:"success"}},m={args:{children:"迷你按钮",type:"primary",size:"mini"}},y={args:{children:"小型按钮",type:"primary",size:"small"}},g={args:{children:"大型按钮",type:"primary",size:"large"}},h={args:{children:"🔍",type:"primary",shape:"circle"}},f={args:{children:"圆角按钮",type:"primary",shape:"round"}},x={args:{children:"禁用按钮",type:"primary",disabled:!0}},b={args:{children:"加载中",type:"default",loading:!0}},B={args:{children:"提交",type:"default",loading:!0,loadingFixedWidth:!0}},v={render:()=>e.jsxs("div",{style:{display:"flex",gap:"8px"},children:[e.jsx(r,{type:"default",children:"取消"}),e.jsx(r,{type:"primary",children:"确定"})]})},S={args:{children:"长按钮",type:"primary",long:!0},parameters:{layout:"padded"}},T={args:{children:"下载",type:"primary",icon:e.jsx("span",{children:"⬇️"})}},j={args:{children:"跳转链接",type:"primary",as:"a",href:"https://example.com",target:"_blank"}},q={args:{children:"提交表单",type:"primary",htmlType:"submit"}},_={render:()=>e.jsxs("div",{style:{display:"flex",gap:"8px",flexWrap:"wrap"},children:[e.jsx(r,{type:"default",children:"默认"}),e.jsx(r,{type:"primary",children:"主要"}),e.jsx(r,{type:"secondary",children:"次要"}),e.jsx(r,{type:"dashed",children:"虚线"}),e.jsx(r,{type:"text",children:"文字"}),e.jsx(r,{type:"outline",children:"线框"})]})},L={render:()=>e.jsxs("div",{style:{display:"flex",gap:"8px",alignItems:"center"},children:[e.jsx(r,{type:"primary",size:"mini",children:"Mini"}),e.jsx(r,{type:"primary",size:"small",children:"Small"}),e.jsx(r,{type:"primary",size:"default",children:"Default"}),e.jsx(r,{type:"primary",size:"large",children:"Large"})]})};s.parameters={...s.parameters,docs:{...s.parameters?.docs,source:{originalSource:`{
   args: {
     children: '默认按钮',
     type: 'default'
   }
-}`,...a.parameters?.docs?.source},description:{story:"默认按钮 - 最基础的按钮样式",...a.parameters?.docs?.description}}};s.parameters={...s.parameters,docs:{...s.parameters?.docs,source:{originalSource:`{
+}`,...s.parameters?.docs?.source},description:{story:"默认按钮 - 最基础的按钮样式",...s.parameters?.docs?.description}}};n.parameters={...n.parameters,docs:{...n.parameters?.docs,source:{originalSource:`{
   args: {
     children: '主要按钮',
     type: 'primary'
   }
-}`,...s.parameters?.docs?.source},description:{story:"主要按钮 - 用于主要操作",...s.parameters?.docs?.description}}};o.parameters={...o.parameters,docs:{...o.parameters?.docs,source:{originalSource:`{
+}`,...n.parameters?.docs?.source},description:{story:"主要按钮 - 用于主要操作",...n.parameters?.docs?.description}}};o.parameters={...o.parameters,docs:{...o.parameters?.docs,source:{originalSource:`{
   args: {
     children: '次要按钮',
     type: 'secondary'
@@ -161,20 +130,20 @@ import{r as U,j as e}from"./iframe-BblueGYI.js";import"./preload-helper-PPVm8Dsz
     type: 'primary',
     disabled: true
   }
-}`,...x.parameters?.docs?.source},description:{story:"禁用状态 - 不可点击",...x.parameters?.docs?.description}}};B.parameters={...B.parameters,docs:{...B.parameters?.docs,source:{originalSource:`{
+}`,...x.parameters?.docs?.source},description:{story:"禁用状态 - 不可点击",...x.parameters?.docs?.description}}};b.parameters={...b.parameters,docs:{...b.parameters?.docs,source:{originalSource:`{
   args: {
     children: '加载中',
     type: 'default',
     loading: true
   }
-}`,...B.parameters?.docs?.source},description:{story:"加载状态 - 显示加载动画",...B.parameters?.docs?.description}}};b.parameters={...b.parameters,docs:{...b.parameters?.docs,source:{originalSource:`{
+}`,...b.parameters?.docs?.source},description:{story:"加载状态 - 显示加载动画",...b.parameters?.docs?.description}}};B.parameters={...B.parameters,docs:{...B.parameters?.docs,source:{originalSource:`{
   args: {
     children: '提交',
     type: 'default',
     loading: true,
     loadingFixedWidth: true
   }
-}`,...b.parameters?.docs?.source},description:{story:"加载状态固定宽度 - 防止文字抖动",...b.parameters?.docs?.description}}};v.parameters={...v.parameters,docs:{...v.parameters?.docs,source:{originalSource:`{
+}`,...B.parameters?.docs?.source},description:{story:"加载状态固定宽度 - 防止文字抖动",...B.parameters?.docs?.description}}};v.parameters={...v.parameters,docs:{...v.parameters?.docs,source:{originalSource:`{
   render: () => <div style={{
     display: 'flex',
     gap: '8px'
@@ -224,7 +193,7 @@ import{r as U,j as e}from"./iframe-BblueGYI.js";import"./preload-helper-PPVm8Dsz
       <Button type="text">文字</Button>
       <Button type="outline">线框</Button>
     </div>
-}`,..._.parameters?.docs?.source},description:{story:"类型组合 - 展示所有类型",..._.parameters?.docs?.description}}};z.parameters={...z.parameters,docs:{...z.parameters?.docs,source:{originalSource:`{
+}`,..._.parameters?.docs?.source},description:{story:"类型组合 - 展示所有类型",..._.parameters?.docs?.description}}};L.parameters={...L.parameters,docs:{...L.parameters?.docs,source:{originalSource:`{
   render: () => <div style={{
     display: 'flex',
     gap: '8px',
@@ -243,4 +212,4 @@ import{r as U,j as e}from"./iframe-BblueGYI.js";import"./preload-helper-PPVm8Dsz
         Large
       </Button>
     </div>
-}`,...z.parameters?.docs?.source},description:{story:"尺寸组合 - 展示所有尺寸",...z.parameters?.docs?.description}}};const ee=["Default","Primary","Secondary","Dashed","Text","Outline","Danger","Warning","Success","Mini","Small","Large","Circle","Round","Disabled","Loading","LoadingFixedWidth","ButtonGroup","LongButton","IconButton","LinkButton","SubmitButton","AllTypes","AllSizes"];export{z as AllSizes,_ as AllTypes,v as ButtonGroup,h as Circle,p as Danger,i as Dashed,a as Default,x as Disabled,T as IconButton,g as Large,j as LinkButton,B as Loading,b as LoadingFixedWidth,S as LongButton,m as Mini,d as Outline,s as Primary,f as Round,o as Secondary,y as Small,q as SubmitButton,u as Success,c as Text,l as Warning,ee as __namedExportsOrder,Z as default};
+}`,...L.parameters?.docs?.source},description:{story:"尺寸组合 - 展示所有尺寸",...L.parameters?.docs?.description}}};const ee=["Default","Primary","Secondary","Dashed","Text","Outline","Danger","Warning","Success","Mini","Small","Large","Circle","Round","Disabled","Loading","LoadingFixedWidth","ButtonGroup","LongButton","IconButton","LinkButton","SubmitButton","AllTypes","AllSizes"];export{L as AllSizes,_ as AllTypes,v as ButtonGroup,h as Circle,p as Danger,i as Dashed,s as Default,x as Disabled,T as IconButton,g as Large,j as LinkButton,b as Loading,B as LoadingFixedWidth,S as LongButton,m as Mini,d as Outline,n as Primary,f as Round,o as Secondary,y as Small,q as SubmitButton,u as Success,c as Text,l as Warning,ee as __namedExportsOrder,Z as default};
